@@ -7,6 +7,25 @@
             <a href="{{ route('/') }}" class="branding">
                 CATCODE
             </a>
+
+            @auth
+                {{-- Студент --}}
+                @if (Auth::user()->role_id == 3) 
+                    <a class="nav-link" href="#">Мои задания</a>    
+                @endif
+
+                {{-- Преподаватель или Админ --}}
+                @if (Auth::user()->role_id == 2 || Auth::user()->role_id == 1)
+                    <a class="nav-link" href="#">Задания</a>
+                    <a class="nav-link" href="#">Группы</a>
+                    <a class="nav-link" href="#">Журнал</a>
+                @endif
+
+                {{-- Админ --}}
+                @if (Auth::user()->role_id == 1)
+                    <a class="nav-link" href="#">Управление пользователями</a>
+                @endif
+            @endauth
         </div>
         <div class="header-group">
             @guest
