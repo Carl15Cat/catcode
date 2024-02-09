@@ -1,0 +1,132 @@
+/* Переменные  */
+
+:root {
+    --main-color: #008000;
+    --main-shadow-color: #006000;
+    --bg-color: #181818;
+}
+
+/* Шрифты */
+
+@font-face {
+    font-family: 'MartianMono';
+    src: url('../fonts/MartianMono.ttf');
+}
+
+@font-face {
+    font-family: 'Manrope';
+    src: url('../fonts/Manrope.ttf');
+}
+
+/* Базовые настройки */
+
+* {
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+    font-family: 'MartianMono', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Шаблон страницы */
+
+body {
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex-grow: 1;
+    color: #fff;
+}
+
+.max-width {
+    max-width: 1232px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header, footer {
+    font-size: 20px;
+    padding: 5px 10px;
+}
+
+header {
+    color: #000;
+    background-color: var(--main-color);
+    box-shadow: 0 0 0 4px var(--main-shadow-color);
+}
+
+header a {
+    color: #000
+}
+
+.nav-link:hover {
+    transform: translateY(-2px);
+}
+
+.nav-link:active {
+    transform: translateY(2px);
+}
+
+footer {
+    color: #fff;
+    background-color: #0f0f0f;
+}
+
+.header-container, .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.header-group, .footer-group {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+}
+
+.branding {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.text-center {
+    text-align: center;
+}
+
+button {
+    margin: 0 auto;
+    padding: 5px 24px;
+    text-align: center;
+
+    color: #fff;
+    font-size: 24px;
+
+    background-color: var(--main-color);
+    box-shadow: 0 3px var(--main-shadow-color);
+    border-radius: 10px;
+    border: 0;
+
+    cursor: pointer;
+    transition: .3s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px var(--main-shadow-color);
+}
+
+button:active {
+    transform: translateY(2px);
+    box-shadow: 0 -2px var(--main-shadow-color);
+}

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="36.517879"
+   height="40.325333"
+   viewBox="0 0 9.6620223 10.669411"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="logo.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     units="px"
+     inkscape:zoom="6.2145903"
+     inkscape:cx="21.240338"
+     inkscape:cy="10.941992"
+     inkscape:window-width="1920"
+     inkscape:window-height="1058"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g3862" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Слой 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-1.5189891,-1.0152946)">
+    <g
+       id="g3862"
+       transform="translate(9.536743e-8,0.50369619)">
+      <path
+         sodipodi:type="star"
+         style="fill:#008000;fill-opacity:1;stroke:#000000;stroke-width:12;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="path2678"
+         inkscape:flatsided="true"
+         sodipodi:sides="3"
+         sodipodi:cx="6.0341868"
+         sodipodi:cy="4.9882612"
+         sodipodi:r1="13.713648"
+         sodipodi:r2="6.8568239"
+         sodipodi:arg1="1.8869811"
+         sodipodi:arg2="2.9341786"
+         inkscape:rounded="0.05"
+         inkscape:randomized="-0.115"
+         d="M 2.8034327,19.260556 C 1.7037003,18.685874 -5.3350713,-4.691267 -4.4578519,-5.4229612 -3.5806326,-6.1546554 18.255534,2.3411066 18.572744,3.427472 18.889954,4.5138373 3.9031651,19.835237 2.8034327,19.260556 Z"
+         transform="matrix(-0.15168364,0.02024399,0.0213185,0.15973472,9.6397006,2.4431374)"
+         inkscape:transform-center-x="-8.5359322"
+         inkscape:transform-center-y="-9.2170311" />
+      <path
+         sodipodi:type="star"
+         style="fill:#008000;fill-opacity:1;stroke:#000000;stroke-width:12;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="path2458"
+         inkscape:flatsided="true"
+         sodipodi:sides="3"
+         sodipodi:cx="6.0341868"
+         sodipodi:cy="4.9882612"
+         sodipodi:r1="13.713648"
+         sodipodi:r2="6.8568239"
+         sodipodi:arg1="1.8869811"
+         sodipodi:arg2="2.9341786"
+         inkscape:rounded="0.05"
+         inkscape:randomized="-0.115"
+         d="M 2.8034327,19.260556 C 1.7037003,18.685874 -5.3350713,-4.691267 -4.4578519,-5.4229612 -3.5806326,-6.1546554 18.255534,2.3411066 18.572744,3.427472 18.889954,4.5138373 3.9031651,19.835237 2.8034327,19.260556 Z"
+         transform="matrix(0.15168364,0.02024399,-0.0213185,0.15973472,3.0603844,2.4430317)"
+         inkscape:transform-center-x="-0.44729527"
+         inkscape:transform-center-y="0.10679398" />
+      <ellipse
+         style="fill:#008000;stroke:#000000;stroke-width:3.70417;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="path1054"
+         cx="6.3499999"
+         cy="6.3499999"
+         rx="2.9789259"
+         ry="2.9789243" />
+      <rect
+         style="display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.48215;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect1737"
+         width="1.5875"
+         height="8.3446941"
+         x="8.1865358"
+         y="-4.1723175"
+         transform="rotate(45)" />
+      <rect
+         style="display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.48215;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect3855"
+         width="1.5875"
+         height="8.3446941"
+         x="-0.79372054"
+         y="-13.152633"
+         transform="rotate(135)" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Слой 2"
+     transform="translate(-1.5189891,-1.0152946)" />
+</svg>

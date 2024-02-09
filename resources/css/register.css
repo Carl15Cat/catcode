@@ -1,0 +1,26 @@
+.register-form {
+    margin: 10px auto;
+    max-width: max-content;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.register-input {
+    margin-top: 2px;
+
+    background-color: #222;
+    border-radius: 100px;
+    border: 1px solid #0F0F0F;
+
+    color: white;
+    font-size: 24px;
+    padding: 24px 36px;
+}
+
+.register-btn {
+    margin-top: 5px;
+    padding: 10px 48px;
+    border-radius: 100px;
+}
