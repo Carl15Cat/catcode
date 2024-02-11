@@ -3,7 +3,7 @@
 @section('title', 'Управление пользователями')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('resources/css/userlist.css') }}">
+    <link rel="stylesheet" href="{{ asset('resources/css/list.css') }}">
 @endsection
 
 @section('content')
@@ -25,15 +25,15 @@
             <tbody>
                 <tr>
                     <td>ФИО</td>
-                    <td>| Роль</td>
-                    <td>| Логин</td>
+                    <td>Роль</td>
+                    <td>Логин</td>
                 </tr>
                 @foreach ($users as $user)
                     <tr>
                         <td>{{ $user->lastname }} {{ $user->firstname }} {{ $user->patronymic }}</td>
-                        <td>| {{ $user->role()->name }}</td>
-                        <td>| {{ $user->login }}</td>
-                        <td>| <a href="#" class="list-link">Перейти</a></td>
+                        <td>{{ $user->role()->name }}</td>
+                        <td>{{ $user->login }}</td>
+                        <td><a href="#" class="list-link">Перейти</a></td>
                     </tr>
                 @endforeach
             </tbody>
