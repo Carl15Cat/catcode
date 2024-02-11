@@ -43,6 +43,11 @@ class UserController extends Controller
         return redirect()->route('/');
     }
 
+    public function myProfileView() {
+        $user = Auth::user();
+        return view('user.profile', compact('user'));
+    }
+
     public function userlistView(Request $request) {
         $searchString = $request['search'];
 

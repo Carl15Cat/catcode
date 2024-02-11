@@ -34,7 +34,7 @@
             @endguest
 
             @auth
-                <a class="nav-link" href="#">{{ Auth::user()->lastname }} {{ Auth::user()->firstname }}</a>
+                <a class="nav-link" href="{{ route('myProfile') }}">{{ Auth::user()->lastname }} {{ Auth::user()->firstname }}</a>
                 <a class="nav-link" href="{{ route('logout') }}">Выход</a>
             @endauth
         </div>

@@ -3,6 +3,8 @@
 :root {
     --main-color: #008000;
     --main-shadow-color: #006000;
+    --danger-color: #df2222;
+    --danger-shadow-color: #bf1c1c;
     --bg-color: #181818;
 }
 
@@ -149,6 +151,19 @@ button:active {
     box-shadow: 0 -2px var(--main-shadow-color);
 }
 
+button.danger {
+    background-color: var(--danger-color);
+    box-shadow: 0 3px var(--danger-shadow-color);
+}
+
+button.danger:hover {
+    box-shadow: 0 5px var(--danger-shadow-color);
+}
+
+button.danger:active {
+    box-shadow: 0 -2px var(--danger-shadow-color);
+}
+
 .list-header {
     margin-top: 8px;
     display: flex;
@@ -180,71 +195,9 @@ button:active {
     transform: none;
 }
 
-.list-container {
-    margin-left: 194px;
+.space-between {
     margin-top: 24px;
-}
-
-a.list-link {
-    color: #fff;
-}
-
-a.list-link:hover {
-    color: #ddd;
-}
-
-.list-pagination {
-    display: flex;
-    justify-content: center;
-    flex-grow: 1;
-}
-
-.list-pagination > nav {
-    display: flex;
-    align-items: end;
-
-    padding-bottom: 30px;
-}
-
-.pagination {
-    list-style: none;
 
     display: flex;
-    justify-content: end;
-    gap: 8px;
-
-    width: max-content;
-}
-
-.pagination > li > a, .pagination > li > span {
-    height: 30px;
-    width: 30px;
-
-    border-radius: 10px;
-    background-color: var(--main-color);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    color: #fff;
-    transition: .3s;
-}
-
-.pagination > li.pagination-dots > span {
-    background-color: transparent;
-}
-
-.pagination > li.disabled > span, .pagination > li.active > span {
-    background-color: var(--main-shadow-color);
-    color: #ddd;
-}
-
-.pagination > li > a:hover, .pagination > li > span:hover {
-    background-color: var(--main-shadow-color);
-    color: #ddd;
-}
-
-.pagination > li.pagination-dots > span:hover {
-    background-color: transparent;
+    justify-content: space-between;
 }

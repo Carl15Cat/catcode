@@ -22,6 +22,8 @@ Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function() {
 
+    Route::get('/me', [UserController::class, 'myProfileView'])->name('myProfile');
+
     Route::middleware('admin')->group(function() {
         Route::get('/userlist', [UserController::class, 'userlistView'])->name('userlist');
     });
