@@ -37,5 +37,8 @@ class DatabaseSeeder extends Seeder
             'login' => 'student',
             'role_id' => 3,
         ]);
+
+        // Для проверки пагинации
+        User::factory()->count(1000)->create();
     }
 }

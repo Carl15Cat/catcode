@@ -43,7 +43,9 @@ body {
 
 .container {
     margin-top: 20px;
+    padding: 0 10px;
 
+    display: flex;
     flex-grow: 1;
     color: #fff;
 }
@@ -53,6 +55,10 @@ body {
 
     margin-left: auto;
     margin-right: auto;
+
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 header, footer {
@@ -85,6 +91,7 @@ footer {
 
 .header-container, .footer-container {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -104,6 +111,15 @@ footer {
 
 .text-center {
     text-align: center;
+}
+
+input {
+    background-color: #222;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 24px;
+    padding: 5px 24px;
 }
 
 button {
@@ -131,4 +147,94 @@ button:hover {
 button:active {
     transform: translateY(2px);
     box-shadow: 0 -2px var(--main-shadow-color);
+}
+
+.list-header {
+    margin-top: 8px;
+    display: flex;
+    gap: 16px;
+}
+
+.search-form {
+    display: flex;
+    width: 100%;
+    transform: translateY(1px);
+}
+
+.search-form input {
+    border-radius: 10px 0 0 10px;
+    width: 100%;
+}
+
+.search-form button {
+    border-radius: 0 10px 10px 0;
+    box-shadow: none;
+}
+
+.search-form button:hover {
+    transform: none;
+    background-color: var(--main-shadow-color);
+}
+
+.search-form button:active {
+    transform: none;
+}
+
+.list-container {
+    margin-left: 194px;
+    margin-top: 24px;
+}
+
+a.list-link {
+    color: #fff;
+}
+
+a.list-link:hover {
+    color: #ddd;
+}
+
+.list-pagination {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.list-pagination > nav {
+    display: flex;
+    align-items: end;
+
+    padding-bottom: 30px;
+}
+
+.pagination {
+    list-style: none;
+
+    display: flex;
+    justify-content: end;
+    gap: 8px;
+
+    width: max-content;
+}
+
+.pagination > li > a, .pagination > li > span {
+    height: 30px;
+    width: 30px;
+
+    border-radius: 10px;
+    background-color: var(--main-color);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #fff;
+    transition: .3s;
+}
+
+.pagination > li.disabled > span, .pagination > li.active > span {
+    background-color: var(--main-shadow-color);
+}
+
+.pagination > li > a:hover, .pagination > li > span:hover {
+    background-color: var(--main-shadow-color);
 }

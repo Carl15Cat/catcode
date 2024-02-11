@@ -23,7 +23,7 @@
 
                 {{-- Админ --}}
                 @if (Auth::user()->role_id == 1)
-                    <a class="nav-link" href="#">Управление пользователями</a>
+                    <a class="nav-link" href="{{ route('userlist') }}">Управление пользователями</a>
                 @endif
             @endauth
         </div>

@@ -37,9 +37,25 @@ class UserController extends Controller
         }
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request) {
         Auth::logout();
         $request->session()->regenerate();
         return redirect()->route('/');
+    }
+
+    public function userlistView(Request $request) {
+        $searchString = $request['search'];
+
+        if(is_null($searchString) && $searchString != ''){
+            $users = User::paginate(15)->withQueryString();
+        } else {
+            $users = User::where('firstname', 'LIKE', "%$searchString%")
+                        ->orWhere('lastname', 'LIKE', "%$searchString%")
+                        ->orWhere('patronymic', 'LIKE', "%$searchString%")
+                        ->orWhere('login', 'LIKE', "%$searchString%")
+                        ->paginate(15)->withQueryString();
+        }
+
+        return view('admin.userlist', compact('users', 'searchString'));
     }
 }
