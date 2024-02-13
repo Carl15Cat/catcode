@@ -30,7 +30,7 @@
             </tbody>
         </table>
         <div class="btns-container">
-            <form action="{{ Auth::user() == $user ? '#' : route('edit_user', $user->id) }}">
+            <form action="{{ url()->current() }}/edit">
                 <button>Изменить данные</button>
             </form>
             @if (Auth::user() == $user)

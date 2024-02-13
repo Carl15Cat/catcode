@@ -28,7 +28,7 @@
             <p>Роль</p>
             <select class="edit-user-input" name="role_id">
                 @foreach ($roles as $role)
-                    <option value="{{ $role->id }} {{ $role == $user->role() ? 'selected' : '' }}">{{ $role->name }}</option>
+                    <option value="{{ $role->id }}" {{ $role == $user->role() ? 'selected' : '' }}>{{ $role->name }}</option>
                 @endforeach
             </select>
         </label>

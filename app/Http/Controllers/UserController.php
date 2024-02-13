@@ -82,16 +82,26 @@ class UserController extends Controller
         return view('user.profile', compact('user'));
     }
 
+    public function editMyProfileView() {
+        $user = Auth::user();
+        $roles = Role::get();
+        return view('user.edit', compact('user', 'roles'));
+    }
+
     public function editUserView($id) {
         $user = User::find($id);
         $roles = Role::get();
         return view('user.edit', compact('user', 'roles'));
     }
 
-    public function editUser(EditUserRequest $request, $id) {
+    public function editUser(EditUserRequest $request, $id = null) {
         $requests = $request->validated();
 
-        $user = User::find($id);
+        if(is_null($id)) {
+            $user = Auth::user();
+        } else {
+            $user = User::find($id);
+        }
 
         $updateData = [];
 
@@ -103,6 +113,10 @@ class UserController extends Controller
 
         $user->update($updateData);
 
-        return redirect()->route('user', $id);
+        if(is_null($id)) {
+            return redirect()->route('myProfile');
+        } else {
+            return redirect()->route('user', $id);
+        }
     }
 }

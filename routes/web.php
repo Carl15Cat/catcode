@@ -23,6 +23,9 @@ Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 Route::middleware('auth')->group(function() {
 
     Route::get('/me', [UserController::class, 'myProfileView'])->name('myProfile');
+    Route::get('/me/edit', [UserController::class, 'editMyProfileView'])->name('editMyProfile');
+
+    Route::post('/me/edit', [UserController::class, 'editUser']);
 
     Route::middleware('admin')->group(function() {
         Route::get('/users', [UserController::class, 'userlistView'])->name('userlist');
