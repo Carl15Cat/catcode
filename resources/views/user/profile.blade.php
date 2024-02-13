@@ -30,12 +30,14 @@
             </tbody>
         </table>
         <div class="btns-container">
-            <form action="#">
+            <form action="{{ Auth::user() == $user ? '#' : route('edit_user', $user->id) }}">
                 <button>Изменить данные</button>
             </form>
-            <form action="{{ route('logout') }}">
-                <button class="danger">Выйти из аккаунта</button>
-            </form>
+            @if (Auth::user() == $user)
+                <form action="{{ route('logout') }}">
+                    <button class="danger">Выйти из аккаунта</button>
+                </form>
+            @endif
         </div>
     </div>
 @endsection

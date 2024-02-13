@@ -27,8 +27,11 @@ Route::middleware('auth')->group(function() {
     Route::middleware('admin')->group(function() {
         Route::get('/users', [UserController::class, 'userlistView'])->name('userlist');
         Route::get('/users/add', [UserController::class, 'addUserView'])->name('add_user');
+        Route::get('/users/{id}', [UserController::class, 'userView'])->name('user');
+        Route::get('/users/{id}/edit', [UserController::class, 'editUserView'])->name('edit_user');
 
         Route::post('/users/add', [UserController::class, 'addUser']);
+        Route::post('/users/{id}/edit', [UserController::class, 'editUser']);
     });
 
 });

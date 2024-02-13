@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\AddUserRequest;
+use App\Http\Requests\EditUserRequest;
 
 use App\Models\Role;
 use App\Models\User;
@@ -72,7 +73,36 @@ class UserController extends Controller
     public function addUser(AddUserRequest $request) {
         $requests = $request->validated();
         User::create($requests);
-        
+
         return redirect()->route('userlist');
+    }
+
+    public function userView($id) {
+        $user = User::find($id);
+        return view('user.profile', compact('user'));
+    }
+
+    public function editUserView($id) {
+        $user = User::find($id);
+        $roles = Role::get();
+        return view('user.edit', compact('user', 'roles'));
+    }
+
+    public function editUser(EditUserRequest $request, $id) {
+        $requests = $request->validated();
+
+        $user = User::find($id);
+
+        $updateData = [];
+
+        foreach($requests as $key => $value) {
+            if ($key != 'password_repeat' && $value != '') {
+                $updateData[$key] = $value;
+            }
+        }
+
+        $user->update($updateData);
+
+        return redirect()->route('user', $id);
     }
 }

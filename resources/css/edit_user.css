@@ -1,0 +1,19 @@
+.edit-user-form {
+    margin: 36px auto;
+    max-width: max-content;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.edit-user-input {
+    margin-top: 2px;
+    width: 100%;
+}
+
+.edit-user-btn {
+    margin-top: 24px;
+    padding: 10px 48px;
+    border-radius: 100px;
+}
