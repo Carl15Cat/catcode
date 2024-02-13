@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/me', [UserController::class, 'myProfileView'])->name('myProfile');
 
     Route::middleware('admin')->group(function() {
-        Route::get('/userlist', [UserController::class, 'userlistView'])->name('userlist');
+        Route::get('/users', [UserController::class, 'userlistView'])->name('userlist');
     });
 
 });
