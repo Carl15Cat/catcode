@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\AddUserRequest;
 
+use App\Models\Role;
 use App\Models\User;
-
-
 
 class UserController extends Controller
 {
@@ -62,5 +62,17 @@ class UserController extends Controller
         }
 
         return view('admin.userlist', compact('list', 'searchString'));
+    }
+
+    public function addUserView() {
+        $roles = Role::get();
+        return view('admin.add_user', compact('roles'));
+    }
+
+    public function addUser(AddUserRequest $request) {
+        $requests = $request->validated();
+        User::create($requests);
+        
+        return redirect()->route('userlist');
     }
 }

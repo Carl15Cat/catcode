@@ -26,6 +26,9 @@ Route::middleware('auth')->group(function() {
 
     Route::middleware('admin')->group(function() {
         Route::get('/users', [UserController::class, 'userlistView'])->name('userlist');
+        Route::get('/users/add', [UserController::class, 'addUserView'])->name('add_user');
+
+        Route::post('/users/add', [UserController::class, 'addUser']);
     });
 
 });

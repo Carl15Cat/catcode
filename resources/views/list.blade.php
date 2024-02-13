@@ -8,7 +8,7 @@
     <h1 class="text-center">@yield('title')</h1>
 
     <div class="list-header">
-        <form action="#">
+        <form action="{{ url()->current() }}/add">
             <button>Добавить</button>
         </form>
 
