@@ -24,14 +24,20 @@
             <p>Отчество</p>
             <input class="edit-user-input" type="text" name="patronymic" value="{{ $user->patronymic }}">
         </label>
-        <label class="edit-user-label">
-            <p>Роль</p>
-            <select class="edit-user-input" name="role_id">
-                @foreach ($roles as $role)
-                    <option value="{{ $role->id }}" {{ $role == $user->role() ? 'selected' : '' }}>{{ $role->name }}</option>
-                @endforeach
-            </select>
-        </label>
+
+        {{-- Администратор может изменять роли --}}
+        @if (Auth::user()->role()->id == 1)
+            <label class="edit-user-label">
+                <p>Роль</p>
+                <select class="edit-user-input" name="role_id">
+                    @foreach ($roles as $role)
+                        <option value="{{ $role->id }}" {{ $role == $user->role() ? 'selected' : '' }}>{{ $role->name }}</option>
+                    @endforeach
+                </select>
+            </label>
+        @endif
+
+
         <label class="edit-user-label">
             <p>Логин</p>
             <input class="edit-user-input" type="text" name="login" value="{{ $user->login }}">

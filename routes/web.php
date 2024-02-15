@@ -4,37 +4,47 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('/');
+// Главная
+Route::get('/', function () { return view('welcome'); })->name('/');
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
+// Аутентификация
+Route::controller(UserController::class)->group(function() {
 
-Route::get('/register', function() {
-    return view('auth.register');
-})->name('register');
+    Route::get('/login', 'loginView')->name('login');
+    Route::get('/register', 'registerView')->name('register');
 
-Route::post('/register', [UserController::class, 'register']);
-Route::post('/login', [UserController::class, 'login']);
-Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+    Route::post('/register', 'register');
+    Route::post('/login', 'login');
+    Route::get('/logout', 'logout')->name('logout');
+});
 
+// Только для зарегистрированных пользователей
 Route::middleware('auth')->group(function() {
 
-    Route::get('/me', [UserController::class, 'myProfileView'])->name('myProfile');
-    Route::get('/me/edit', [UserController::class, 'editMyProfileView'])->name('editMyProfile');
+    // Управление своими данными
+    Route::controller(UserController::class)->prefix('/me')->group(function() {
+        
+        Route::get('/', 'myProfileView')->name('myProfile');
+        Route::get('/edit', 'editMyProfileView')->name('editMyProfile');
 
-    Route::post('/me/edit', [UserController::class, 'editUser']);
+        Route::post('/edit', 'editUser');
+    });
 
+    // Только для администраторов
     Route::middleware('admin')->group(function() {
-        Route::get('/users', [UserController::class, 'userlistView'])->name('userlist');
-        Route::get('/users/add', [UserController::class, 'addUserView'])->name('add_user');
-        Route::get('/users/{id}', [UserController::class, 'userView'])->name('user');
-        Route::get('/users/{id}/edit', [UserController::class, 'editUserView'])->name('edit_user');
+        
+        // Управление пользователями
+        Route::controller(UserController::class)->prefix('/users')->group(function() {
 
-        Route::post('/users/add', [UserController::class, 'addUser']);
-        Route::post('/users/{id}/edit', [UserController::class, 'editUser']);
+            Route::get('/', 'userlistView')->name('userlist');
+            Route::get('/add', 'addUserView')->name('add_user');
+            Route::get('/{id}', 'userView')->name('user');
+            Route::get('/{id}/edit', 'editUserView')->name('edit_user');
+    
+            Route::post('/add', 'addUser');
+            Route::post('/{id}/edit', 'editUser');
+        });
+
     });
 
 });
