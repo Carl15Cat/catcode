@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Group;
 
 class DatabaseSeeder extends Seeder
 {
@@ -40,5 +41,12 @@ class DatabaseSeeder extends Seeder
 
         // Для проверки пагинации
         User::factory()->count(1000)->create();
+
+        Group::insert([
+            'name' => 'ИС-449',
+        ]);
+        Group::insert([
+            'name' => 'ИС-453',
+        ]);
     }
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\UserController;
 
 // Главная
@@ -28,6 +29,19 @@ Route::middleware('auth')->group(function() {
         Route::get('/edit', 'editMyProfileView')->name('editMyProfile');
 
         Route::post('/edit', 'editUser');
+    });
+
+    // Для преподавателей и администраторов
+    Route::middleware('teacher')->group(function() {
+        
+        // Управление группами
+        Route::controller(GroupController::class)->prefix('/groups')->group(function() {
+
+            Route::get('/', 'grouplistView')->name('grouplist');
+            Route::get('/add', 'addGroupView')->name('addGroup');
+
+            Route::post('/add', 'addGroup');
+        });
     });
 
     // Только для администраторов
