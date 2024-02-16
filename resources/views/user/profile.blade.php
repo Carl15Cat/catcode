@@ -30,6 +30,7 @@
             </tbody>
         </table>
         <div class="btns-container">
+            {{-- Может быть как /user/{id}/edit, так и /me/edit, поэтому через url()->current()  --}}
             <form action="{{ url()->current() }}/edit">
                 <button>Изменить данные</button>
             </form>
