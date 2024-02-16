@@ -48,5 +48,14 @@ class DatabaseSeeder extends Seeder
         Group::insert([
             'name' => 'ИС-453',
         ]);
+
+        // По 10 случайных студентов в группы
+        $students = User::where('role_id', 3)->get();
+
+        Group::all()->each(function ($group) use ($students){
+            $group->belongsToMany(User::class)->attach(
+                $students->random(10)->pluck('id')->toArray()
+            ); 
+        });
     }
 }

@@ -6,12 +6,16 @@
     <link rel="stylesheet" href="{{ asset('resources/css/group.css') }}">
 @endsection
 
+@php
+    $users = $group->users();
+@endphp
+
 @section('content')
     <h1 class="page-title">Группа {{ $group->name }}</h1>
     <div class="space-between">
         <div class="user-list">
             <div class="space-between user-list-header">
-                <p>0 студентов</p>
+                <p>{{ count($users) }} студентов</p>
                 <div class="space-between">
                     <form action="#">
                         <button>Добавить</button>
@@ -22,7 +26,9 @@
                 </div>
             </div>
             <div>
-                Тут будет список
+                @foreach ($users as $user)
+                    <p>{{ $user->login }}</p>
+                @endforeach
             </div>
         </div>
         <div class="btns-container">
