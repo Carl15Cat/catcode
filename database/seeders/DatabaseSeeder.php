@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
 
         Group::all()->each(function ($group) use ($students){
             $group->belongsToMany(User::class)->attach(
-                $students->random(10)->pluck('id')->toArray()
+                $students->random(30)->pluck('id')->toArray()
             ); 
         });
     }

@@ -4,6 +4,7 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('resources/css/group.css') }}">
+    <link rel="stylesheet" href="{{ asset('resources/css/list.css') }}">
 @endsection
 
 @php
@@ -26,9 +27,28 @@
                 </div>
             </div>
             <div>
-                @foreach ($users as $user)
-                    <p>{{ $user->login }}</p>
-                @endforeach
+                <table class="userslist-table">
+                    <tbody>
+                        <tr>
+                            <td>ФИО</td>
+                            <td>Роль</td>
+                            <td>Логин</td>
+                        </tr>
+                        @foreach ($users as $user)
+                            <tr>
+                                <td>{{ $user->lastname }} {{ $user->firstname }} {{ $user->patronymic }}</td>
+                                <td>{{ $user->role()->name }}</td>
+                                <td>{{ $user->login }}</td>
+                                <td>
+                                    <form method="POST" action="{{ route('deleteUser', [$group->id, $user->id]) }}">
+                                        @csrf
+                                        <button class="danger small">Удалить</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="btns-container">
@@ -39,7 +59,7 @@
                 </label>
                 <button>Сохранить</button>
             </form>
-            <form action="#">
+            <form action="">
                 <button class="danger">Удалить группу</button>
             </form>
         </div>

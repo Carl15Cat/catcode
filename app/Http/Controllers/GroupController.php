@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AddGroupRequest;
 
 use App\Models\Group;
+use App\Models\User;
 
 class GroupController extends Controller
 {
@@ -42,6 +43,16 @@ class GroupController extends Controller
      */
     public function groupView($id) {
         $group = Group::find($id);
+
+        return view('teacher.group', compact('group'));
+    }
+
+    /**
+     * Удаляет пользователя из группы
+     */
+    public function deleteUser($groupId, $userId) {
+        $group = Group::find($groupId);
+        $group->belongsToMany(User::class)->detach(User::find($userId));
 
         return view('teacher.group', compact('group'));
     }

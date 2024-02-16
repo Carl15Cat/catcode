@@ -169,6 +169,10 @@ button.danger:active {
     box-shadow: 0 -2px var(--danger-shadow-color);
 }
 
+button.small {
+    font-size: 16px;
+}
+
 .list-header {
     margin-top: 8px;
     display: flex;
