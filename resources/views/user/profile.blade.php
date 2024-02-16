@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <h1 class="text-center">Мой профиль</h1>
+    <h1 class="page-title">Мой профиль</h1>
     <div class="space-between">
         <table class="user-table">
             <tbody>

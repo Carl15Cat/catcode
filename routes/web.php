@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function() {
 
             Route::get('/', 'grouplistView')->name('grouplist');
             Route::get('/add', 'addGroupView')->name('addGroup');
+            Route::get('/{id}', 'groupView')->name('group');
 
             Route::post('/add', 'addGroup');
         });

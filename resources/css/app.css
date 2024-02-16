@@ -115,6 +115,11 @@ footer {
     text-align: center;
 }
 
+.page-title {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
 input, select {
     background-color: #222;
     border: none;
@@ -196,8 +201,10 @@ button.danger:active {
 }
 
 .space-between {
-    margin-top: 24px;
+    /* margin-top: 24px; */
 
     display: flex;
     justify-content: space-between;
+
+    gap: 8px;
 }

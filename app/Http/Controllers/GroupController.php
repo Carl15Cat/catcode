@@ -27,10 +27,22 @@ class GroupController extends Controller
         return view('teacher.add_group');
     }
 
+    /**
+     * Добавляет новую группу
+     */
     public function addGroup(AddGroupRequest $request) {
         $requests = $request->validated();
         Group::create($requests);
 
         return redirect()->route('grouplist');
+    }
+
+    /**
+     * Возвращает страницу с информацией о группе
+     */
+    public function groupView($id) {
+        $group = Group::find($id);
+
+        return view('teacher.group', compact('group'));
     }
 }

@@ -1,3 +1,18 @@
+.user-list {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 800px;
+
+    gap: 16px;
+}
+
+.user-list-header {
+    align-items: center;
+    gap: 8px;
+}
+
 .user-table {
     font-size: 24px;
 }

@@ -9,7 +9,7 @@
     <div class="list">
         @foreach ($list as $group)
             <div class="list-item">
-                <a class="list-link" href="#">{{ $group->name }}</a>
+                <a class="list-link" href="{{ route('group', $group->id) }}">{{ $group->name }}</a>
             </div>
         @endforeach
     </div>
