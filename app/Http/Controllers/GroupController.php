@@ -17,10 +17,10 @@ class GroupController extends Controller
      * Возвращает страницу со списком групп
      */
     public function grouplistView(Request $request) {
-        $searchString = $request['search']; // Строка поиска, поиск не реализован
+        $searchQuery = $request['search']; // Строка поиска
 
-        $list = Group::paginate(15)->withQueryString();
-        return view('teacher.grouplist', compact('list', 'searchString'));
+        $list = Group::where('name', 'LIKE', $searchQuery)->paginate(15)->withQueryString();
+        return view('teacher.grouplist', compact('list', 'searchQuery'));
     }
 
     /**
@@ -72,16 +72,16 @@ class GroupController extends Controller
      * Страница добавления пользователей в группу
      */
     public function addUsersView(Request $request, $groupId) {
-        $searchString = $request['search']; // Строка поиска, поиск не реализован
+        $searchQuery = $request['search']; // Строка поиска
 
         $group = Group::find($groupId);
 
         $userIdArray = array_column($group->users()->get()->toArray(), 'id'); // Массив id пользователй, состоящих в группе
-        $users = User::where('role_id', 3)->whereNotIn('id', $userIdArray); // Выбор всех студентов, не состоящих в группе
+        $users = User::where('role_id', 3)->whereNotIn('id', $userIdArray)->search($searchQuery); // Выбор всех студентов, не состоящих в группе
 
         $list = $users->paginate(15)->withQueryString();
 
-        return view('teacher.addUsersToGroup', compact('group', 'list', 'searchString'));
+        return view('teacher.addUsersToGroup', compact('group', 'list', 'searchQuery'));
     }
 
     /**

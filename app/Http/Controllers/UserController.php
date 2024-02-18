@@ -111,21 +111,11 @@ class UserController extends Controller
      * Возвращает страницу со списком всех пользователей
      */
     public function userlistView(Request $request) {
-        $searchString = $request['search'];
+        $searchQuery = $request['search'];
 
-        if(is_null($searchString) && $searchString != ''){
-            // Без поиска, вывод всех пользователей
-            $list = User::paginate(15)->withQueryString();
-        } else {
-            // Используется поиск
-            $list = User::where('firstname', 'LIKE', "%$searchString%")
-                        ->orWhere('lastname', 'LIKE', "%$searchString%")
-                        ->orWhere('patronymic', 'LIKE', "%$searchString%")
-                        ->orWhere('login', 'LIKE', "%$searchString%")
-                        ->paginate(15)->withQueryString();
-        }
+        $list = User::search($searchQuery)->paginate(15)->withQueryString();
 
-        return view('admin.userlist', compact('list', 'searchString'));
+        return view('admin.userlist', compact('list', 'searchQuery'));
     }
 
     /**

@@ -22,7 +22,7 @@
         @show
 
         <form class="search-form">
-            <input type="text" name="search" placeholder="Поиск" value="{{ $searchString }}">
+            <input type="text" name="search" placeholder="Поиск" value="{{ $searchQuery }}">
             <button>Поиск</button>
         </form>
     </div>
