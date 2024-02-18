@@ -48,11 +48,23 @@ class GroupController extends Controller
         return view('teacher.group', compact('group'));
     }
 
+    /**
+     * Изменяет информацию о группе (название)
+     */
     public function editGroup(EditGroupRequest $request, $id) {
         $requests = $request->validated();
         Group::find($id)->update($requests);
 
         return back();
+    }
+
+    /**
+     * Удаляет группу
+     */
+    public function deleteGroup($id) {
+        Group::find($id)->delete();
+
+        return redirect()->route('grouplist');
     }
 
     /**

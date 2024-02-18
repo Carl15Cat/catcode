@@ -43,7 +43,8 @@ Route::middleware('auth')->group(function() {
 
             Route::post('/add', 'addGroup');
             Route::post('/{id}/edit', 'editGroup')->name('editGroup');
-            Route::post('/{groupId}/deleteUser/{userId}', 'deleteUser')->name('deleteUser');
+            Route::post('/{id}/delete', 'deleteGroup')->name('deleteGroup');
+            Route::post('/{groupId}/deleteUser/{userId}', 'deleteUser')->name('deleteUserFromGroup');
         });
     });
 

@@ -40,7 +40,7 @@
                                 <td>{{ $user->role()->name }}</td>
                                 <td>{{ $user->login }}</td>
                                 <td>
-                                    <form method="POST" action="{{ route('deleteUser', [$group->id, $user->id]) }}">
+                                    <form method="POST" action="{{ route('deleteUserFromGroup', [$group->id, $user->id]) }}">
                                         @csrf
                                         <button class="danger small">Удалить</button>
                                     </form>
@@ -60,7 +60,8 @@
                 </label>
                 <button>Сохранить</button>
             </form>
-            <form action="">
+            <form method="POST" action="{{ route('deleteGroup', $group->id) }}">
+                @csrf
                 <button class="danger">Удалить группу</button>
             </form>
         </div>
