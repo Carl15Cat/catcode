@@ -52,7 +52,8 @@
             </div>
         </div>
         <div class="btns-container">
-            <form action="#">
+            <form method="POST" action="{{ route('editGroup', $group->id) }}">
+                @csrf
                 <label>
                     <p>Изменить название:</p>
                     <input type="text" name="name" value="{{ $group->name }}">

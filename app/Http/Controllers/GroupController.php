@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\AddGroupRequest;
+use App\Http\Requests\EditGroupRequest;
 
 use App\Models\Group;
 use App\Models\User;
@@ -45,6 +46,13 @@ class GroupController extends Controller
         $group = Group::find($id);
 
         return view('teacher.group', compact('group'));
+    }
+
+    public function editGroup(EditGroupRequest $request, $id) {
+        $requests = $request->validated();
+        Group::find($id)->update($requests);
+
+        return back();
     }
 
     /**

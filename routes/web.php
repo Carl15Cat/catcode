@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function() {
             Route::get('/{id}', 'groupView')->name('group');
 
             Route::post('/add', 'addGroup');
+            Route::post('/{id}/edit', 'editGroup')->name('editGroup');
             Route::post('/{groupId}/deleteUser/{userId}', 'deleteUser')->name('deleteUser');
         });
     });
