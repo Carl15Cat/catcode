@@ -84,7 +84,7 @@ class UserController extends Controller
     public function addUserView() {
         $roles = Role::get();
 
-        return view('admin.add_user', compact('roles'));
+        return view('admin.addUser', compact('roles'));
     }
 
     /**

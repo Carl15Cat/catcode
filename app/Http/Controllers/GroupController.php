@@ -27,7 +27,7 @@ class GroupController extends Controller
      * Возвращает страницу добавления группы
      */
     public function addGroupView() {
-        return view('teacher.add_group');
+        return view('teacher.addGroup');
     }
 
     /**
@@ -35,9 +35,9 @@ class GroupController extends Controller
      */
     public function addGroup(AddGroupRequest $request) {
         $requests = $request->validated();
-        Group::create($requests);
+        $group = Group::create($requests);
 
-        return redirect()->route('grouplist');
+        return redirect()->route('group', $group->id);
     }
 
     /**
@@ -81,7 +81,7 @@ class GroupController extends Controller
 
         $list = $users->paginate(15)->withQueryString();
 
-        return view('teacher.add_users_to_group', compact('group', 'list', 'searchString'));
+        return view('teacher.addUsersToGroup', compact('group', 'list', 'searchString'));
     }
 
     /**
@@ -100,6 +100,6 @@ class GroupController extends Controller
         $group = Group::find($groupId);
         $group->belongsToMany(User::class)->detach(User::find($userId));
 
-        return view('teacher.group', compact('group'));
+        return back();
     }
 }

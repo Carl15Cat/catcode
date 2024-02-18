@@ -57,9 +57,9 @@ Route::middleware('auth')->group(function() {
         Route::controller(UserController::class)->prefix('/users')->group(function() {
 
             Route::get('/', 'userlistView')->name('userlist');
-            Route::get('/add', 'addUserView')->name('add_user');
+            Route::get('/add', 'addUserView')->name('addUser');
             Route::get('/{id}', 'userView')->name('user');
-            Route::get('/{id}/edit', 'editUserView')->name('edit_user');
+            Route::get('/{id}/edit', 'editUserView')->name('editUser');
     
             Route::post('/add', 'addUser');
             Route::post('/{id}/edit', 'editUser');
