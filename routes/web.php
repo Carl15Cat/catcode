@@ -40,10 +40,12 @@ Route::middleware('auth')->group(function() {
             Route::get('/', 'grouplistView')->name('grouplist');
             Route::get('/add', 'addGroupView')->name('addGroup');
             Route::get('/{id}', 'groupView')->name('group');
+            Route::get('/{id}/addUsers', 'addUsersView')->name('addUsersToGroup');
 
             Route::post('/add', 'addGroup');
             Route::post('/{id}/edit', 'editGroup')->name('editGroup');
             Route::post('/{id}/delete', 'deleteGroup')->name('deleteGroup');
+            Route::post('/{groupId}/addUsers/{userId}', 'addUser')->name('addUserToGroup');
             Route::post('/{groupId}/deleteUser/{userId}', 'deleteUser')->name('deleteUserFromGroup');
         });
     });

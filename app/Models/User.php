@@ -48,7 +48,10 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class)->first();
     }
 
+    /**
+     * Возвращает список групп, в которых числится пользователь
+     */
     public function groups() {
-        return $this->belongsToMany(Group::class)->get();
+        return $this->belongsToMany(Group::class);
     }
 }

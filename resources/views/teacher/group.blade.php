@@ -8,7 +8,7 @@
 @endsection
 
 @php
-    $users = $group->users();
+    $users = $group->users()->get();
 @endphp
 
 @section('content')
@@ -18,7 +18,7 @@
             <div class="space-between user-list-header">
                 <p>{{ count($users) }} студентов</p>
                 <div class="space-between">
-                    <form action="#">
+                    <form action="{{ route('addUsersToGroup', $group->id) }}">
                         <button>Добавить</button>
                     </form>
                     <form action="">

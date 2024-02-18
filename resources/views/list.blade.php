@@ -15,9 +15,11 @@
     <h1 class="text-center">@yield('title')</h1>
 
     <div class="list-header">
-        <form action="{{ url()->current() }}/add">
-            <button>Добавить</button>
-        </form>
+        @section('sidebtn')
+            <form action="{{ url()->current() }}/add">
+                <button>Добавить</button>
+            </form>        
+        @show
 
         <form class="search-form">
             <input type="text" name="search" placeholder="Поиск" value="{{ $searchString }}">

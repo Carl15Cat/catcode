@@ -13,7 +13,10 @@ class Group extends Model
         'id',
     ];
 
+    /**
+     * Возвращает список пользователей, 
+     */
     public function users() {
-        return $this->belongsToMany(User::class)->get();
+        return $this->belongsToMany(User::class);
     }
 }
