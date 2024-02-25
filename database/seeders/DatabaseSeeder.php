@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Group;
+use App\Models\Task;
+use App\Models\Variable_type;
 
 class DatabaseSeeder extends Seeder
 {
@@ -57,5 +59,19 @@ class DatabaseSeeder extends Seeder
                 $students->random(30)->pluck('id')->toArray()
             ); 
         });
+
+        Task::insert([
+            'user_id' => 1,
+            'name' => 'Тестовое задание',
+            'description' => fake()->sentence(50),
+            'variables' => json_encode(['a' => 'string', 'b' => 'int']),
+        ]);
+
+        Variable_type::insert([
+            'name' => 'string'
+        ]);
+        Variable_type::insert([
+            'name' => 'integer'
+        ]);
     }
 }

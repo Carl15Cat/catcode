@@ -1,0 +1,51 @@
+input[type="radio"] {
+    display: none;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 800px;
+
+    margin-top: 16px;
+    gap: 16px;
+}
+
+.list-header {
+    align-items: center;
+    gap: 8px;
+}
+
+.list-table {
+    font-size: 24px;
+}
+
+.list-table td {
+    padding-right: 16px;
+}
+
+.btns-container {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 8px;
+}
+
+input[type="radio"]:checked + .button {
+    transform: translateY(2px);
+    background-color: var(--main-shadow-color);
+    box-shadow: 0 -2px var(--main-shadow-color);
+}
+
+.task-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 50%;
+}
+
+.no-display {
+    display: none;
+}

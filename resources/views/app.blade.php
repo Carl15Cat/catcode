@@ -27,5 +27,7 @@
     </div>
 
     @include('components/footer')
+
+    @yield('js')
 </body>
 </html>

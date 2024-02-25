@@ -79,7 +79,7 @@ class GroupController extends Controller
         $userIdArray = array_column($group->users()->get()->toArray(), 'id'); // Массив id пользователй, состоящих в группе
         $users = User::where('role_id', 3)->whereNotIn('id', $userIdArray)->search($searchQuery); // Выбор всех студентов, не состоящих в группе
 
-        $list = $users->paginate(15)->withQueryString();
+        $list = $users->paginate(14)->withQueryString();
 
         return view('teacher.addUsersToGroup', compact('group', 'list', 'searchQuery'));
     }

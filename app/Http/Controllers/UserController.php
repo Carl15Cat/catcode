@@ -113,7 +113,7 @@ class UserController extends Controller
     public function userlistView(Request $request) {
         $searchQuery = $request['search'];
 
-        $list = User::search($searchQuery)->paginate(15)->withQueryString();
+        $list = User::search($searchQuery)->paginate(14)->withQueryString();
 
         return view('admin.userlist', compact('list', 'searchQuery'));
     }

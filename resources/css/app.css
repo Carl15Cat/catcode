@@ -44,8 +44,7 @@ body {
 }
 
 .container {
-    margin-top: 20px;
-    padding: 0 10px;
+    margin: 20px 10px;
 
     display: flex;
     flex-grow: 1;
@@ -120,16 +119,17 @@ footer {
     margin-bottom: 24px;
 }
 
-input, select {
+input, select, textarea {
     background-color: #222;
     border: none;
     border-radius: 10px;
     color: #fff;
     font-size: 24px;
     padding: 5px 24px;
+    resize: none;
 }
 
-button {
+button, .button {
     margin: 0 auto;
     padding: 5px 24px;
     text-align: center;
@@ -146,30 +146,30 @@ button {
     transition: .3s;
 }
 
-button:hover {
+button:hover, .button:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px var(--main-shadow-color);
 }
 
-button:active {
+button:active .button:active {
     transform: translateY(2px);
     box-shadow: 0 -2px var(--main-shadow-color);
 }
 
-button.danger {
+button.danger, .button.danger {
     background-color: var(--danger-color);
     box-shadow: 0 3px var(--danger-shadow-color);
 }
 
-button.danger:hover {
+button.danger:hover, .button.danger:hover {
     box-shadow: 0 5px var(--danger-shadow-color);
 }
 
-button.danger:active {
+button.danger:active, .button.danger:active {
     box-shadow: 0 -2px var(--danger-shadow-color);
 }
 
-button.small {
+button.small, .button.small {
     font-size: 16px;
 }
 

@@ -15,7 +15,11 @@
                     <td>{{ $user->lastname }} {{ $user->firstname }} {{ $user->patronymic }}</td>
                     <td>{{ $user->role()->name }}</td>
                     <td>{{ $user->login }}</td>
-                    <td><a href="{{ route('user', $user->id) }}" class="list-link">Перейти</a></td>
+                    <td>
+                        <form action="{{ route('user', $user->id) }}">
+                            <button class="small">Профиль</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

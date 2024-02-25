@@ -11,7 +11,6 @@
 
     <form method="POST" class="add-group-form">
         @csrf
-
         <label class="add-group-label">
             <p>Название</p>
             <input class="add-group-input" type="text" name="name">

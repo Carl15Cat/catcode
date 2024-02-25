@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VariableTypeController;
 
 // Главная
 Route::get('/', function () { return view('welcome'); })->name('/');
@@ -34,6 +36,18 @@ Route::middleware('auth')->group(function() {
     // Для преподавателей и администраторов
     Route::middleware('teacher')->group(function() {
         
+        // Управлние заданиями
+        Route::controller(TaskController::class)->prefix('/tasks')->group(function() {
+            Route::get('/', 'taskListView')->name('tasklist');
+            Route::get('/add', 'addTaskView')->name('addTask');
+            Route::get('/{id}', 'taskView')->name('task');
+            Route::get('/{id}/edit', 'editTaskView')->name('editTask');
+
+            Route::post('/add', 'addTask');
+            Route::post('/{id}/edit', 'editTask');
+            Route::post('/{id}/delete', 'deleteTask')->name('deleteTask');
+        });
+
         // Управление группами
         Route::controller(GroupController::class)->prefix('/groups')->group(function() {
 
@@ -67,4 +81,6 @@ Route::middleware('auth')->group(function() {
 
     });
 
+    // Получение данных
+    Route::get('/getVariableTypes', [VariableTypeController::class, 'getVariableTypes']);
 });
