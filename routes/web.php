@@ -10,6 +10,9 @@ use App\Http\Controllers\VariableTypeController;
 // Главная
 Route::get('/', function () { return view('welcome'); })->name('/');
 
+// Компилятор
+Route::get('/compiler', function () { return view('compiler.compiler'); })->name('compiler');
+
 // Аутентификация
 Route::controller(UserController::class)->group(function() {
 

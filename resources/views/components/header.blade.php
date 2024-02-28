@@ -7,6 +7,7 @@
             <a href="{{ route('/') }}" class="branding">
                 CATCODE
             </a>
+            <a class="nav-link" href="{{ route('compiler') }}">Компилятор</a>
 
             @auth
                 {{-- Студент --}}
