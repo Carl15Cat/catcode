@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\CompilerController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
@@ -11,7 +12,9 @@ use App\Http\Controllers\VariableTypeController;
 Route::get('/', function () { return view('welcome'); })->name('/');
 
 // Компилятор
-Route::get('/compiler', function () { return view('compiler.compiler'); })->name('compiler');
+Route::get('/compiler', [CompilerController::class, 'freeCompilerView'])->name('compiler');
+
+Route::post('/compiler', [CompilerController::class, 'runFreeCompiler'])->name('runFreeCompiler');
 
 // Аутентификация
 Route::controller(UserController::class)->group(function() {

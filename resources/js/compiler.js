@@ -1,11 +1,20 @@
-let highlighting_content = document.querySelector('#highlighting-content');
-let highlighting_element = document.querySelector('#highlighting');
-let code_textarea = document.querySelector('#code');
+let highlighting_content = document.getElementById('highlighting-content');
+let highlighting_element = document.getElementById('highlighting');
+let code_textarea = document.getElementById('code');
+let language_select = document.getElementById('language_select');
+
+// Сейчас не нужен, может понадобиться позже
+// let languages_list = [];
+
+// for (let i = 0; i < language_select.length; i++) {
+//     languages_list.push(language_select.options[i].label);
+// }
 
 code_textarea.addEventListener('input', () => update_highlighting(code_textarea, highlighting_content));
 code_textarea.addEventListener('input', () => sync_scroll(code_textarea, highlighting_content));
 code_textarea.addEventListener('scroll', () => sync_scroll(code_textarea, highlighting_element));
 code_textarea.addEventListener('keydown', (event) => add_tab(event, code_textarea, highlighting_content));
+language_select.addEventListener('change', () => change_language(language_select, code_textarea, highlighting_element, highlighting_content));
 
 let update_highlighting = (source_element, highlighting_content) => {
     let code = source_element.value;
@@ -43,6 +52,27 @@ let add_tab = (event, code_textarea, highlighting_content) => {
     }
 }
 
+// Смена языка
+let change_language = (language_select, code_textarea, highlighting_content) => {
+    let new_language = language_select.options[language_select.selectedIndex].text; // Получает название текстом
+
+    // Исправление подсветки с-подобных языков
+    if(new_language == "C++") {
+        new_language = "cpp";
+    } else if (new_language == "C#") {
+        new_language = "cs";
+    }
+
+    for(let i = 0; i < highlighting_content.classList.length; i++) {
+        let toremove = highlighting_content.classList[i];
+        highlighting_content.classList.remove(toremove)
+    }
+
+    highlighting_content.classList.add('language-' + new_language.toLowerCase());
+
+    update_highlighting(code_textarea, highlighting_content);
+}
+
 code_textarea.value = localStorage.getItem('compiler-code');
-update_highlighting(code_textarea, highlighting_content);
+change_language(language_select, code_textarea, highlighting_content);
 sync_scroll(code_textarea, highlighting_element);

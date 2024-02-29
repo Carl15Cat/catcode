@@ -24,10 +24,11 @@
     box-sizing: border-box;
     padding: 0.5em;
 
-    background-color: #006000;
+    background-color: var(--main-shadow-color);
 
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .execute{
@@ -110,5 +111,10 @@
 }
 
 .compile_error{
-    color: #DF2222;
+    color: var(--danger-color);
+}
+
+.language-name {
+    font-size: 16px;
+    background-color: var(--main-color);
 }

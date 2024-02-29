@@ -10,14 +10,19 @@
 @section('js')
     <script src="{{ asset('/resources/prism/prism.js') }}"></script>
     <script src="{{ asset('/resources/js/compiler.js') }}"></script>
+    <script src="{{ asset('/resources/js/free_compiler.js') }}"></script>
 @endsection
 
 @section('content')
     <div class="compiler-container">
         <div class="input-container">
-            <div class="window-title language-name">
-                <p>Компилятор PHP 7.4.1</p>
-                <p class="execute">Запустить</p>
+            <div class="window-title">
+                <select class="language-name" name="language_id" id="language_select">
+                    @foreach ($programmingLanguages as $lang)
+                        <option value="{{ $lang->id }}">{{ $lang->name }}</option>
+                    @endforeach
+                </select>
+                <p class="execute" id="executeButton">Запустить</p>
             </div>
             <div class="code-container">
                 <textarea name="" id="code" spellcheck="false"></textarea>
