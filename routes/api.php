@@ -16,8 +16,13 @@ use App\Http\Controllers\CompilerController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::controller(CompilerController::class)->prefix('/submissions')->group(function() {
+    Route::get('/{token}', 'getSubmission')->name('getSubmission');
+    Route::post('/', 'runFreeCompiler')->name('createSubmission');
 });
 
-Route::post('/compiler', [CompilerController::class, 'runFreeCompiler'])->name('runFreeCompiler');
+

@@ -35,7 +35,7 @@
                 Вывод программы
             </div>
             <div class="output-content">
-                <p class="default-text">Вывод программы будет отображён здесь</p>
+                <p class="default-text" id="output_field">Вывод программы будет отображён здесь</p>
             </div>
         </div>
     </div>

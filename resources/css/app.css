@@ -28,6 +28,8 @@
 
     box-sizing: border-box;
     font-family: 'MartianMono', sans-serif;
+
+    tab-size: 4;
 }
 
 a {

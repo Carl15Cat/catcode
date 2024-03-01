@@ -14,8 +14,6 @@ Route::get('/', function () { return view('welcome'); })->name('/');
 // Компилятор
 Route::get('/compiler', [CompilerController::class, 'freeCompilerView'])->name('compiler');
 
-Route::post('/compiler', [CompilerController::class, 'runFreeCompiler'])->name('runFreeCompiler');
-
 // Аутентификация
 Route::controller(UserController::class)->group(function() {
 

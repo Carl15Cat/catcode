@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('version');
+            $table->text('default_code');
+            $table->string('highlight_name');
         });
     }
 

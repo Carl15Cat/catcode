@@ -1,28 +1,20 @@
-let highlighting_content = document.getElementById('highlighting-content');
-let highlighting_element = document.getElementById('highlighting');
-let code_textarea = document.getElementById('code');
-let language_select = document.getElementById('language_select');
-
-// Сейчас не нужен, может понадобиться позже
-// let languages_list = [];
-
-// for (let i = 0; i < language_select.length; i++) {
-//     languages_list.push(language_select.options[i].label);
-// }
+const highlighting_content = document.getElementById('highlighting-content');
+const highlighting_element = document.getElementById('highlighting');
+const code_textarea = document.getElementById('code');
+const language_select = document.getElementById('language_select');
 
 code_textarea.addEventListener('input', () => update_highlighting(code_textarea, highlighting_content));
 code_textarea.addEventListener('input', () => sync_scroll(code_textarea, highlighting_content));
 code_textarea.addEventListener('scroll', () => sync_scroll(code_textarea, highlighting_element));
 code_textarea.addEventListener('keydown', (event) => add_tab(event, code_textarea, highlighting_content));
-language_select.addEventListener('change', () => change_language(language_select, code_textarea, highlighting_element, highlighting_content));
+language_select.addEventListener('change', () => change_language(language_select, code_textarea, highlighting_content));
 
+// Обновить подсветку синтаксиса
 let update_highlighting = (source_element, highlighting_content) => {
     let code = source_element.value;
     highlighting_content.innerHTML = encrypt_string(code);
 
-    Prism.highlightElement(highlighting_content);
-
-    localStorage.setItem('compiler-code', code);
+    Prism.highlightElement(highlighting_content)
 }
 
 // Зашифровывает строку, чтобы & и < отображались при вставке в innerHTML
@@ -31,6 +23,7 @@ let encrypt_string = (value) => {
     return value.replace(new RegExp("&", "g"), "&amp;").replace(new RegExp("<", "g"), "&lt;");
 }
 
+// Возможность скроллить
 let sync_scroll = (source_element, highlighting_element) => {
     highlighting_element.scrollTop = source_element.scrollTop;
     highlighting_element.scrollLeft = source_element.scrollLeft;
@@ -73,6 +66,5 @@ let change_language = (language_select, code_textarea, highlighting_content) => 
     update_highlighting(code_textarea, highlighting_content);
 }
 
-code_textarea.value = localStorage.getItem('compiler-code');
 change_language(language_select, code_textarea, highlighting_content);
 sync_scroll(code_textarea, highlighting_element);
