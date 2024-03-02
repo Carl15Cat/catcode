@@ -18,15 +18,13 @@
         <div class="input-container">
             <div class="window-title">
                 <select class="language-name" name="language_id" id="language_select">
-                    @foreach ($programmingLanguages as $lang)
-                        <option value="{{ $lang->id }}">{{ $lang->name }}</option>
-                    @endforeach
+
                 </select>
                 <p class="execute" id="executeButton">Запустить</p>
             </div>
             <div class="code-container">
                 <textarea name="" id="code" spellcheck="false"></textarea>
-                <pre id="highlighting"><code class="language-php" id="highlighting-content"></code></pre>
+                <pre id="highlighting"><code id="highlighting-content"></code></pre>
             </div>
         </div>
 

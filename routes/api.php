@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CompilerController;
+use App\Http\Controllers\ProgrammingLanguageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,8 @@ use App\Http\Controllers\CompilerController;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+
+Route::get('/languages', function() { return App\Models\ProgrammingLanguage::getAll(); })->name('getProgrammingLanguages');
 
 Route::controller(CompilerController::class)->prefix('/submissions')->group(function() {
     Route::get('/{token}', 'getSubmission')->name('getSubmission');

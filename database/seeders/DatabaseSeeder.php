@@ -43,31 +43,43 @@ class DatabaseSeeder extends Seeder
             'id' => 68,
             'name' => 'PHP',
             'version' => '7.4.1',
+            'highlight_name' => 'php',
+            'default_code' => "<?php\n\techo \"Hello World!\";\n?>",
         ]);
         ProgrammingLanguage::insert([
             'id' => 70,
             'name' => 'Python',
             'version' => '2.7.17',
+            'highlight_name' => 'python',
+            'default_code' => "print(\"Hello World!\")",
         ]);
         ProgrammingLanguage::insert([
             'id' => 76,
             'name' => 'C++',
             'version' => 'Clang 7.0.1',
+            'highlight_name' => 'cpp',
+            'default_code' => "#include <iostream>\n\nint main() {\n\tstd::cout << \"Hello World!\";\n}",
         ]);
         ProgrammingLanguage::insert([
             'id' => 51,
             'name' => 'C#',
             'version' => 'Mono 6.6.0.161',
+            'highlight_name' => 'cs',
+            'default_code' => "using System;\n\nnamespace Catcode {\n\tclass Program {\n\t\tstatic void Main(string[] args) {\n\t\t\tConsole.WriteLine(\"Hello World!\");\n\t\t}\n\t}\n}",
         ]);
         ProgrammingLanguage::insert([
             'id' => 62,
             'name' => 'Java',
             'version' => 'OpenJDK 13.0.1',
+            'highlight_name' => 'java',
+            'default_code' => "class Main {\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println(\"Hello World!\");\n\t}\n}",
         ]);
         ProgrammingLanguage::insert([
             'id' => 63,
             'name' => 'JavaScript',
             'version' => 'Node.js 12.14.0',
+            'highlight_name' => 'javascript',
+            'default_code' => "console.log(\"Hello World!\")",
         ]);
 
         // Тестовые данные:

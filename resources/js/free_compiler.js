@@ -1,6 +1,13 @@
 const execute_button = document.getElementById('executeButton')
 const output_field = document.getElementById('output_field')
 
+let programming_languages;
+fetch(window.location.origin + "/api/languages/").then((response) => response.json())
+.then((data) => {
+    programming_languages = data
+    setFields(programming_languages)
+})
+
 execute_button.addEventListener('click', () => {
     let code = code_textarea.value;
     let language_id = language_select.value;
@@ -69,14 +76,18 @@ let output = (data) => {
     }
 }
 
-code_textarea.addEventListener('input', () => {localStorage.setItem('free-compiler-code', code_textarea.value)});
-language_select.addEventListener('change', () => {localStorage.setItem('free-compiler-language', language_select.value)});
+let setFields = (programming_languages) => {
+    selected_language = localStorage.getItem('free-compiler-language');
+    programming_languages.forEach((language) => {
+        language_select.innerHTML += `<option value="${language.id}" ${selected_language == language.id ? 'selected' : ''}>${language.name}</option>`
+    })
 
-code_textarea.value = localStorage.getItem('free-compiler-code');
+    language_select.addEventListener('change', () => {localStorage.setItem('free-compiler-language', language_select.value)});
+    code_textarea.addEventListener('input', () => {
+        let language = programming_languages.find(obj => { return obj.id == language_select.value }) // Находит объект языка
+        localStorage.setItem(`free-compiler-${language.name}`, code_textarea.value)
+    });
 
-if (localStorage.getItem('free-compiler-language')) {
-    language_select.value = localStorage.getItem('free-compiler-language');
+    change_language(language_select, code_textarea, highlighting_content);
+    sync_scroll(code_textarea, highlighting_element);
 }
-
-change_language(language_select, code_textarea, highlighting_content);
-sync_scroll(code_textarea, highlighting_element);

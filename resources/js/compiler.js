@@ -47,24 +47,20 @@ let add_tab = (event, code_textarea, highlighting_content) => {
 
 // Смена языка
 let change_language = (language_select, code_textarea, highlighting_content) => {
-    let new_language = language_select.options[language_select.selectedIndex].text; // Получает название текстом
-
-    // Исправление подсветки с-подобных языков
-    if(new_language == "C++") {
-        new_language = "cpp";
-    } else if (new_language == "C#") {
-        new_language = "cs";
-    }
+    let language = programming_languages.find(obj => { return obj.id == language_select.value }) // Находит объект языка
 
     for(let i = 0; i < highlighting_content.classList.length; i++) {
         let toremove = highlighting_content.classList[i];
         highlighting_content.classList.remove(toremove)
     }
+    highlighting_content.classList.add('language-' + language.highlight_name);
 
-    highlighting_content.classList.add('language-' + new_language.toLowerCase());
+    code = localStorage.getItem(`free-compiler-${language.name}`);
 
+    if(!code) {
+        code = language.default_code
+    }
+
+    code_textarea.value = code;
     update_highlighting(code_textarea, highlighting_content);
 }
-
-change_language(language_select, code_textarea, highlighting_content);
-sync_scroll(code_textarea, highlighting_element);
