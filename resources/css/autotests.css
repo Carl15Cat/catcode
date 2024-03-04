@@ -1,0 +1,37 @@
+.autotest-list {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 8px;
+}
+
+.autotest {
+    margin-top: 8px;
+    padding: 8px;
+    border-radius: 10px;
+    background-color: var(--elems-bg-color);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.delete-autotest-form {
+    margin-top: 12px;
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
+
+.delete-autotest-form > button {
+    margin: 0;
+    height: min-content
+}
+
+.btns-container {
+    display: flex;
+    gap: 8px;
+}

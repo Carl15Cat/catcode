@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AutotestController;
 use App\Http\Controllers\CompilerController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\TaskController;
@@ -50,6 +51,15 @@ Route::middleware('auth')->group(function() {
             Route::post('/add', 'addTask');
             Route::post('/{id}/edit', 'editTask');
             Route::post('/{id}/delete', 'deleteTask')->name('deleteTask');
+        });
+
+        // Управление автотестами
+        Route::controller(AutotestController::class)->prefix('/tasks/{taskId}/autotests')->group(function() {
+            Route::get('/', 'autotestlistView')->name('autotestlist');
+            Route::get('/add', 'addAutotestView')->name('addAutotest');
+
+            Route::post('/add', 'addAutotest')->name('addAutotest');
+            Route::post('/{id}/delete', 'deleteAutotest')->name('deleteAutotest');
         });
 
         // Управление группами

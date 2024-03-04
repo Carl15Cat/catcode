@@ -1,0 +1,25 @@
+.task-description {
+    max-width: 30%;
+}
+
+.form-container {
+    /* Пока не знаю, что делать в firefox */
+    width: -webkit-fill-available; 
+    display: flex;
+    justify-content: center;
+}
+
+.add-autotest-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.btns-container {
+    display: flex;
+    gap: 8px;
+}
+
+.space-between {
+    margin-top: 8px;
+}

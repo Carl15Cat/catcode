@@ -63,10 +63,16 @@
                 </div>
             </div>
             <div class="btns-container">
-                <h2>0 автотестов</h2>
-                <form action="#">
-                    <button>Просмотреть автотесты</button>
-                </form>
+                <h2>{{ $task->autotests()->count() }} автотестов</h2>
+                @if ($task->autotests()->count() > 0)
+                    <form action="{{ route('autotestlist', $task->id) }}">
+                        <button>Просмотреть автотесты</button>
+                    </form>
+                @else
+                    <form action="{{ route('addAutotest', $task->id) }}">
+                        <button>Добавить автотест</button>
+                    </form>
+                @endif
                 <form action="{{ route('editTask', $task->id) }}">
                     <button>Изменить задание</button>
                 </form>
