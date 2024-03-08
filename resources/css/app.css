@@ -132,6 +132,48 @@ input, select, textarea {
     resize: none;
 }
 
+input:disabled, select:disabled {
+    background-color: var(--elems-bg-color);
+}
+
+input[type="checkbox"], input[type="radio"] {
+    display: none;
+}
+
+input[type="checkbox"] + span, input[type="radio"] + span {
+    display: inline-flex;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+input[type="checkbox"] + span::before, input[type="radio"] + span::before {
+    content: '';
+    margin-right: 4px;
+
+    display: block;
+    height: 1.2em;
+    width: 1.2em;
+
+    box-sizing: border-box;
+    background-color: var(--elems-bg-color);
+
+    cursor: pointer;
+}
+
+input[type="checkbox"] + span::before {
+    border-radius: 5px;
+}
+
+input[type="radio"] + span::before {
+    border-radius: 50px;
+}
+
+input[type="checkbox"]:checked + span::before, input[type="radio"]:checked + span::before {
+    background-color: var(--main-color);
+    border: 3px solid var(--main-shadow-color)
+}
+
 button, .button {
     margin: 0 auto;
     padding: 5px 24px;
@@ -172,7 +214,7 @@ button.danger:active, .button.danger:active {
     box-shadow: 0 -2px var(--danger-shadow-color);
 }
 
-button.small, .button.small {
+button.small, .button.small, select.small {
     font-size: 16px;
 }
 
@@ -212,6 +254,13 @@ button.small, .button.small {
 
     display: flex;
     justify-content: space-between;
+
+    gap: 8px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
 
     gap: 8px;
 }

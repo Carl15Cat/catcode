@@ -102,4 +102,14 @@ class GroupController extends Controller
 
         return back();
     }
+
+    /**
+     * Возвращает страницу, на которой пользователь выбирает группу, которой дать уже выбранное задание
+     */
+    public function searchToGiveView(Request $request, $taskId) {
+        $searchQuery = $request['search']; // Строка поиска
+
+        $list = Group::where('name', 'LIKE', $searchQuery)->paginate(15)->withQueryString();
+        return view('teacher.searchGroupToGiveTask', compact('taskId', 'list', 'searchQuery'));
+    }
 }

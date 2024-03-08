@@ -1,9 +1,13 @@
-const list_container = document.getElementById('list_container');
+const groupTable = document.getElementById('group_tbody');
+const taskTypeSelect = document.getElementById('task_type_select');
 
-let handleListChange = (src) => {
-    for(let item of list_container.children) {
-        item.classList.add('no-display');
-    }
-
-    document.getElementById('list_' + src.value).classList.remove('no-display');
-}
+// Переключение видимости заданий между "Все", "Открытые" и "Закрытые"
+taskTypeSelect.addEventListener('change', () => {
+    [...groupTable.children].forEach(element => {
+        if(element.classList.contains(taskTypeSelect.value) || taskTypeSelect.value == 'all') {
+            element.style.display = 'table-row';
+        } else {
+            element.style.display = 'none';
+        }
+    });
+});

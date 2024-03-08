@@ -16,16 +16,29 @@
     <form method="POST" class="edit-task-form">
         @csrf
         <div>
-            <div>
-                <label class="edit-task-label">
-                    <p>Название</p>
-                    <input class="edit-task-input" type="text" name="name" value="{{ $task->name }}">
-                </label>
-        
-                <label class="edit-task-label">
-                    <p>Описание</p>
-                    <textarea name="description" id="" cols="40" rows="10" class="edit-task-input">{{ $task->description }}</textarea>
-                </label>
+            <div class="center">
+                <div>
+                    <label class="edit-task-label">
+                        <p>Название</p>
+                        <input class="edit-task-input" type="text" name="name" value="{{ $task->name }}">
+                    </label>
+            
+                    <label class="edit-task-label">
+                        <p>Описание</p>
+                        <textarea name="description" id="" cols="40" rows="10" class="edit-task-input">{{ $task->description }}</textarea>
+                    </label>
+                </div>
+                <div>
+                    <p>Язык программирования</p>
+                    <div class="language-box">
+                        @foreach ($programmingLanguages as $progLang)
+                            <label>
+                                <input type="radio" name="language_id" value="{{ $progLang->id }}" {{ $progLang->id == $task->programming_language_id ? 'checked' : '' }}>
+                                <span>{{ $progLang->name }}</span>
+                            </label>
+                        @endforeach
+                    </div>
+                </div>
             </div>
             <div class="variables-container">
                 <h3 class="text-center">Переменные</h3>

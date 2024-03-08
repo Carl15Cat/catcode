@@ -16,6 +16,8 @@ input[type="radio"] {
 .list-header {
     align-items: center;
     gap: 8px;
+    min-width: max-content;
+    width: 100%;
 }
 
 .list-table {
@@ -24,6 +26,10 @@ input[type="radio"] {
 
 .list-table td {
     padding-right: 16px;
+}
+
+.list-container {
+    width: max-content;
 }
 
 .btns-container {
@@ -48,4 +54,25 @@ input[type="radio"]:checked + .button {
 
 .no-display {
     display: none;
+}
+
+.group-list {
+    margin-top: 8px;
+}
+
+.group-list td {
+    padding: 2px;
+}
+
+.group-list a {
+    color: white;
+}
+
+.closed > .deadline {
+    color: var(--danger-color);
+}
+
+.group-btns {
+    display: flex;
+    gap: 2px;
 }

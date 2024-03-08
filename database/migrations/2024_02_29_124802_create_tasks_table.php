@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 use App\Models\User;
+use App\Models\ProgrammingLanguage;
 
 return new class extends Migration
 {
@@ -19,6 +20,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->json('variables');
+            $table->foreignIdFor(ProgrammingLanguage::class);
             $table->timestamps();
         });
     }

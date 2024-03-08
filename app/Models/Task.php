@@ -26,4 +26,11 @@ class Task extends Model
     public function autotests() {
         return $this->hasMany(Autotest::class);
     }
+
+    /**
+     * Возвращает список групп, которым дали это задание
+     */
+    public function groups() {
+        return $this->belongsToMany(Group::class)->withPivot('deadline');
+    }
 }

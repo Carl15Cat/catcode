@@ -6,9 +6,12 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\AddTaskRequest;
+use App\Http\Requests\GiveTaskRequest;
 
 use App\Models\Task;
 use App\Models\Variable_type;
+use App\Models\Group;
+use App\Models\ProgrammingLanguage;
 
 class TaskController extends Controller
 {
@@ -34,7 +37,8 @@ class TaskController extends Controller
      * Возвращает страницу добавления задания
      */
     public function addTaskView() {
-        return view('teacher.addTask');
+        $programmingLanguages = ProgrammingLanguage::getAll();
+        return view('teacher.addTask', compact('programmingLanguages'));
     }
 
     /**
@@ -57,6 +61,7 @@ class TaskController extends Controller
             'description' => $requests['description'],
             'variables' => $vars_json,
             'user_id' => Auth::user()->id,
+            'programming_language_id' => $requests['language_id'],
         ];
 
         $task = Task::create($data);
@@ -70,7 +75,8 @@ class TaskController extends Controller
     public function editTaskView($id) {
         $task = Task::find($id);
         $var_types = Variable_type::get();
-        return view('teacher.editTask', compact('task', 'var_types'));
+        $programmingLanguages = ProgrammingLanguage::getAll();
+        return view('teacher.editTask', compact('task', 'var_types', 'programmingLanguages'));
     }
 
     /**
@@ -93,6 +99,7 @@ class TaskController extends Controller
             'description' => $requests['description'],
             'variables' => $vars_json,
             'user_id' => Auth::user()->id,
+            'programming_language_id' => $requests['language_id'],
         ];
 
         Task::find($id)->update($data);
@@ -110,12 +117,52 @@ class TaskController extends Controller
     }
 
     /**
+     * Возвращает страницу выдачи задания группе. Задание и группа на этом этапе уже выбраны
+     */
+    public function giveTaskView($taskId, $groupId) {
+        $task = Task::find($taskId);
+        $group = Group::find($groupId);
+        $programmingLanguages = ProgrammingLanguage::getAll();
+
+        return view('teacher.giveTask', compact('task', 'group', 'programmingLanguages'));
+    }
+
+    /**
+     * Выдаёт задание группе
+     */
+    public function giveTask(GiveTaskRequest $request, $taskId, $groupId) {
+        $requests = $request->validated();
+
+        $deadline = $requests['deadline_date'].' '.$requests['deadline_time'];
+
+        Task::find($taskId)->groups()->attach($groupId, ['deadline' => $deadline]);
+        
+        return redirect()->route('task', $taskId);
+    }
+
+    /**
+     * Отменяет данное группе задание
+     */
+    public function cancelTask($taskId, $groupId) {
+        Task::find($taskId)->groups()->detach($groupId);
+
+        return redirect()->route('task', $taskId);
+    }
+
+    /**
      * Принимает отвалидированный запрос
      * 
      * Возвращает массив переменных вида ['name' => 'type']
      * или редирект с ошибкой в случае ошибки
+     * 
+     * Если переменные не установлены, вернёт пустой массив
      */
     private function getVariablesFromRequest($requests) {
+        // Проверка, есть ли переменные
+        if(!isset($requests['variable_name'])) {
+            return [];
+        }
+
         // Проверка на количество имён и типов переменных
         if(count($requests['variable_name']) != count($requests['variable_type'])) {
             return back()->withErrors(['variables' => 'Ошибка в переменных']);

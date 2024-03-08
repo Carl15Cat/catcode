@@ -31,8 +31,9 @@ class AutotestController extends Controller
      */
     public function addAutotest(AddAutotestRequest $request, $taskId) { 
         $data = $request->validated();
-        $data['variables'] = json_encode($data['variables']);
+
         $data['task_id'] = $taskId;
+        $data['variables'] = json_encode(isset($data['variables']) ? $data['variables'] : []);
 
         Autotest::create($data);
         return redirect()->route('autotestlist', $taskId);

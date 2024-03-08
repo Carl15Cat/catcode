@@ -17,33 +17,46 @@
         <div>
             <div class="task-info">
                 <h2>Выдано:</h2>
-                <div class="space-between">
-                    <label for="list-style-group">
-                        <input type="radio" name="list-type" value="group" id="list-style-group" onchange="handleListChange(this)" checked>
-                        <div class="button">Групповые</div>
-                    </label>
-                    <label for="list-style-solo">
-                        <input type="radio" name="list-type" value="solo" id="list-style-solo" onchange="handleListChange(this)">
-                        <div class="button">Индивидуальные</div>
-                    </label>
-                </div>
                 <div class="list-container" id="list_container">
-                    <div class="list" id="list_group">
-                        <div class="list-header space-between">
-                            <h3>0 групп</h3>
-                            <form action="#">
+                    <div class="space-between" style="width: 100%">
+                        <div style="width: max-content">{{ $task->groups()->count() }} групп</div>
+                        <div class="space-between">
+                            <form action="{{ route('searchGroupToGiveTask', $task->id) }}">
                                 <button class="small">Задать</button>
                             </form>
+                            <select class="small" id="task_type_select">
+                                <option value="all">Все</option>
+                                <option value="open">Открытые</option>
+                                <option value="closed">Закрытые</option>
+                            </select>
                         </div>
                     </div>
-                    <div class="list no-display" id="list_solo">
-                        <div class="list-header space-between">
-                            <h3>0 студентов</h3>
-                            <form action="#">
-                                <button class="small">Задать</button>
-                            </form>
-                        </div>
-                    </div>
+                    <table class="group-list" id="group_table">
+                        <tbody id="group_tbody">
+                            @foreach ($task->groups()->orderBy('deadline')->get() as $group)
+                                <tr class="{{ $group->pivot->deadline > date('Y-m-d H:i:s') ? 'open' : 'closed' }}">
+                                    <td><a href="{{ route('group', $group->id) }}">{{ $group->name }}</a></td>
+                                    <td class="deadline">{{ date_create_from_format('Y-m-d H:i:s', $group->pivot->deadline)->format('H:i d.m.Y') }}</td>
+                                    <td>
+                                        <div class="group-btns">
+                                            <form action="#">
+                                                <button class="small">Журнал</button>
+                                            </form>
+    
+                                            <form action="#">
+                                                <button class="small">Изменить</button>
+                                            </form>
+    
+                                            <form action="{{ route('cancelTask', ['taskId' => $task->id, 'groupId' => $group->id]) }}" method="POST">
+                                                @csrf
+                                                <button class="small danger">Отменить</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

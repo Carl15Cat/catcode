@@ -38,3 +38,11 @@
     align-items: center;
     gap: 8px;
 }
+
+.language-box {
+    margin-top: 8px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}

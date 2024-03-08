@@ -19,4 +19,11 @@ class Group extends Model
     public function users() {
         return $this->belongsToMany(User::class);
     }
+
+    /**
+     * Возвращает задания, данные группе
+     */
+    public function tasks(){
+        return $this->belongsToMany(Task::class)->withPivot('deadline');
+    }
 }

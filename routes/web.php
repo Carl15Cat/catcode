@@ -47,10 +47,13 @@ Route::middleware('auth')->group(function() {
             Route::get('/add', 'addTaskView')->name('addTask');
             Route::get('/{id}', 'taskView')->name('task');
             Route::get('/{id}/edit', 'editTaskView')->name('editTask');
+            Route::get('/{taskId}/give/{groupId}', 'giveTaskView')->name('giveTask');
 
             Route::post('/add', 'addTask');
             Route::post('/{id}/edit', 'editTask');
             Route::post('/{id}/delete', 'deleteTask')->name('deleteTask');
+            Route::post('/{taskId}/give/{groupId}', 'giveTask');
+            Route::post('/{taskId}/cancel/{groupId}', 'cancelTask')->name('cancelTask');
         });
 
         // Управление автотестами
@@ -64,11 +67,11 @@ Route::middleware('auth')->group(function() {
 
         // Управление группами
         Route::controller(GroupController::class)->prefix('/groups')->group(function() {
-
             Route::get('/', 'grouplistView')->name('grouplist');
             Route::get('/add', 'addGroupView')->name('addGroup');
             Route::get('/{id}', 'groupView')->name('group');
             Route::get('/{id}/addUsers', 'addUsersView')->name('addUsersToGroup');
+            Route::get('/give/{taskId}', 'searchToGiveView')->name('searchGroupToGiveTask');
 
             Route::post('/add', 'addGroup');
             Route::post('/{id}/edit', 'editGroup')->name('editGroup');

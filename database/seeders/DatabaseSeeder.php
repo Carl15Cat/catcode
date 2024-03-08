@@ -124,6 +124,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Тестовое задание',
             'description' => fake()->sentence(50),
             'variables' => json_encode(['a' => 'string', 'b' => 'int']),
+            'programming_language_id' => 68,
         ]);
     }
 }
