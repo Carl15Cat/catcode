@@ -11,6 +11,7 @@ use App\Models\Group;
 use App\Models\Task;
 use App\Models\Variable_type;
 use App\Models\ProgrammingLanguage;
+use App\Models\Status;
 
 class DatabaseSeeder extends Seeder
 {

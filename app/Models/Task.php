@@ -28,9 +28,16 @@ class Task extends Model
     }
 
     /**
-     * Возвращает список групп, которым дали это задание
+     * Возвращает список выданных заданий
      */
-    public function groups() {
-        return $this->belongsToMany(Group::class)->withPivot('deadline');
+    public function assignments() {
+        return $this->hasMany(Assignment::class);
+    }
+
+    /**
+     * Возвращает ЯП, установленный для этого задания
+     */
+    public function programmingLanguage() {
+        return $this->belongsTo(ProgrammingLanguage::class)->first();
     }
 }

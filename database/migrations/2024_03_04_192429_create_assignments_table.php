@@ -14,10 +14,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('group_task', function (Blueprint $table) {
+        Schema::create('assignments', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Task::class)->constrained()->onDelete('cascade');;
-            $table->foreignIdFor(Group::class)->constrained()->onDelete('cascade');;
+            $table->foreignIdFor(Task::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(Group::class)->constrained()->onDelete('cascade');
             $table->datetime('deadline');
             $table->timestamps();
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('group_task');
+        Schema::dropIfExists('assignments');
     }
 };

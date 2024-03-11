@@ -10,6 +10,7 @@ use App\Http\Requests\AddUserToGroupRequest;
 
 use App\Models\Group;
 use App\Models\User;
+use App\Models\Task;
 
 class GroupController extends Controller
 {
@@ -109,7 +110,9 @@ class GroupController extends Controller
     public function searchToGiveView(Request $request, $taskId) {
         $searchQuery = $request['search']; // Строка поиска
 
-        $list = Group::where('name', 'LIKE', $searchQuery)->paginate(15)->withQueryString();
+        $groups = Task::find($taskId)->assignments()->pluck('group_id');
+        $list = Group::whereNotIn('id', $groups)
+        ->where('name', 'LIKE', $searchQuery)->paginate(15)->withQueryString();
         return view('teacher.searchGroupToGiveTask', compact('taskId', 'list', 'searchQuery'));
     }
 }

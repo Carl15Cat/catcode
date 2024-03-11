@@ -12,7 +12,7 @@
             @auth
                 {{-- Студент --}}
                 @if (Auth::user()->role_id == 3) 
-                    <a class="nav-link" href="#">Мои задания</a>    
+                    <a class="nav-link" href="{{ route('studentTasks') }}">Мои задания</a>    
                 @endif
 
                 {{-- Преподаватель или Админ --}}

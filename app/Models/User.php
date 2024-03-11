@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 use App\Builders\UserBuilder;
 
@@ -61,5 +62,12 @@ class User extends Authenticatable
      */
     public function groups() {
         return $this->belongsToMany(Group::class);
+    }
+
+    /**
+     * Возвращает список решений данного пользователя
+     */
+    public function solutions() {
+        return $this->hasMany(Solution::class);
     }
 }

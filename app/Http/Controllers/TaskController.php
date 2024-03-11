@@ -12,6 +12,7 @@ use App\Models\Task;
 use App\Models\Variable_type;
 use App\Models\Group;
 use App\Models\ProgrammingLanguage;
+use App\Models\Assignment;
 
 class TaskController extends Controller
 {
@@ -23,6 +24,25 @@ class TaskController extends Controller
 
         $list = Task::where('name', 'LIKE', "%$searchQuery%")->paginate(14)->withQueryString();
         return view('teacher.tasklist', compact('list', 'searchQuery'));
+    }
+
+    /**
+     * Возвращает страницу со списком заданий данного пользователя (студента)
+     */
+    public function studentTasksView(Request $request) {
+        $searchQuery = $request['search']; //Строка поиска
+
+        if($searchQuery == '') {
+            $list = Auth::user()->solutions()->paginate(14)->withQueryString();
+        } else {
+            $list = Auth::user()->solutions()->whereHas('assignment', function($query) use ($searchQuery) {
+                $query->whereHas('task', function($query) use ($searchQuery) {
+                    $query->where('name', 'LIKE', "%$searchQuery%");
+                });
+            })->paginate(14)->withQueryString();
+        }
+        
+        return view('student.tasklist', compact('list', 'searchQuery'));
     }
 
     /**
@@ -134,8 +154,7 @@ class TaskController extends Controller
         $requests = $request->validated();
 
         $deadline = $requests['deadline_date'].' '.$requests['deadline_time'];
-
-        Task::find($taskId)->groups()->attach($groupId, ['deadline' => $deadline]);
+        AssignmentController::createAssignment($taskId, $groupId, $deadline);
         
         return redirect()->route('task', $taskId);
     }
@@ -144,8 +163,9 @@ class TaskController extends Controller
      * Отменяет данное группе задание
      */
     public function cancelTask($taskId, $groupId) {
-        Task::find($taskId)->groups()->detach($groupId);
+        $assignment = Assignment::where('task_id', $taskId)->where('group_id', $groupId)->first();
 
+        $assignment->delete();
         return redirect()->route('task', $taskId);
     }
 

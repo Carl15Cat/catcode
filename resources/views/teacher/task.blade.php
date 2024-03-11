@@ -19,7 +19,7 @@
                 <h2>Выдано:</h2>
                 <div class="list-container" id="list_container">
                     <div class="space-between" style="width: 100%">
-                        <div style="width: max-content">{{ $task->groups()->count() }} групп</div>
+                        <div style="width: max-content">{{ $task->assignments()->count() }} групп</div>
                         <div class="space-between">
                             <form action="{{ route('searchGroupToGiveTask', $task->id) }}">
                                 <button class="small">Задать</button>
@@ -33,10 +33,10 @@
                     </div>
                     <table class="group-list" id="group_table">
                         <tbody id="group_tbody">
-                            @foreach ($task->groups()->orderBy('deadline')->get() as $group)
-                                <tr class="{{ $group->pivot->deadline > date('Y-m-d H:i:s') ? 'open' : 'closed' }}">
-                                    <td><a href="{{ route('group', $group->id) }}">{{ $group->name }}</a></td>
-                                    <td class="deadline">{{ date_create_from_format('Y-m-d H:i:s', $group->pivot->deadline)->format('H:i d.m.Y') }}</td>
+                            @foreach ($task->assignments()->orderBy('deadline')->get() as $assignment)
+                                <tr class="{{ $assignment->deadline > date('Y-m-d H:i:s') ? 'open' : 'closed' }}">
+                                    <td><a href="{{ route('group', $assignment->group_id) }}">{{ $assignment->group()->name }}</a></td>
+                                    <td class="deadline">{{ date_create_from_format('Y-m-d H:i:s', $assignment->deadline)->format('H:i d.m.Y') }}</td>
                                     <td>
                                         <div class="group-btns">
                                             <form action="#">
@@ -47,7 +47,7 @@
                                                 <button class="small">Изменить</button>
                                             </form>
     
-                                            <form action="{{ route('cancelTask', ['taskId' => $task->id, 'groupId' => $group->id]) }}" method="POST">
+                                            <form action="{{ route('cancelTask', ['taskId' => $task->id, 'groupId' => $assignment->group_id]) }}" method="POST">
                                                 @csrf
                                                 <button class="small danger">Отменить</button>
                                             </form>

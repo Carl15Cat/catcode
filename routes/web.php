@@ -38,6 +38,11 @@ Route::middleware('auth')->group(function() {
         Route::post('/edit', 'editUser');
     });
 
+    // Только для студентов
+    Route::middleware('student')->group(function() { 
+        Route::get('/myTasks', [TaskController::class, 'studentTasksView'])->name('studentTasks');
+    });
+
     // Для преподавателей и администраторов
     Route::middleware('teacher')->group(function() {
         
