@@ -23,4 +23,10 @@ class SolutionController extends Controller
 
         return true;
     }
+
+    public function solutionStudentView($solutionId) {
+        $solution = Solution::find($solutionId);
+        
+        return view('student.solution', compact('solution'));
+    }
 }

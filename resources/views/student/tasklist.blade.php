@@ -24,7 +24,7 @@
                         <p>Группа: {{ $solution->assignment()->group()->name }}</p>
                     </div>
                     <div class="buttons">
-                        <form action="#">
+                        <form action="{{ route('solutionStudent', $solution->id) }}">
                             <button>К заданию</button>
                         </form>
                     </div>

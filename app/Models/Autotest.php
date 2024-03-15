@@ -12,4 +12,8 @@ class Autotest extends Model
     protected $guarded = [
         'id',
     ];
+
+    public function variables() {
+        return json_decode($this->variables);
+    }
 }

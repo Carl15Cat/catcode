@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AutotestController;
 use App\Http\Controllers\CompilerController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\SolutionController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VariableTypeController;
@@ -41,6 +42,7 @@ Route::middleware('auth')->group(function() {
     // Только для студентов
     Route::middleware('student')->group(function() { 
         Route::get('/myTasks', [TaskController::class, 'studentTasksView'])->name('studentTasks');
+        Route::get('/solution/{solutionId}', [SolutionController::class, 'solutionStudentView'])->name('solutionStudent');
     });
 
     // Для преподавателей и администраторов

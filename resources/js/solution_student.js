@@ -1,0 +1,1 @@
+update_highlighting(code_textarea, highlighting_content)
