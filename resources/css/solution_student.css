@@ -35,4 +35,17 @@
 
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
+}
+
+.autotest.waiting {
+    border: 3px solid var(--warning-color);
+}
+
+.autotest.success {
+    border: 3px solid var(--main-color);
+}
+
+.autotest.error {
+    border: 3px solid var(--danger-color);
 }

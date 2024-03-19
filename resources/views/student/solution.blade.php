@@ -2,6 +2,10 @@
 
 @section('title', $solution->task()->name)
 
+@section('meta')
+    <meta name="_token" content="{{ csrf_token() }}">
+@endsection
+
 @section('css')
     <link rel="stylesheet" href="{{ asset('/resources/prism/prism.css') }}">
     <link rel="stylesheet" href="{{ asset('/resources/css/compiler.css') }}">
@@ -21,10 +25,12 @@
             <div class="input-container">
                 <div class="window-title">
                     <p>{{ $solution->task()->programmingLanguage()->name }}</p>
-                    <p class="execute" id="executeButton">Запустить</p>
+                    <p class="execute" id="executeButton" data-solution-id="{{ $solution->id }}">Запустить</p>
                 </div>
                 <div class="code-container">
-                    <textarea name="" id="code" spellcheck="false" >{{ $solution->task()->programmingLanguage()->default_code }}</textarea>
+                    <textarea name="" id="code" spellcheck="false" >{{ 
+                        $solution->code ?? $solution->task()->programmingLanguage()->default_code 
+                    }}</textarea>
                     <pre id="highlighting" class="language-{{ $solution->task()->programmingLanguage()->highlight_name }}"><code id="highlighting-content"></code></pre>
                 </div>
             </div>
@@ -32,22 +38,26 @@
         <div></div>
         <div class="task-info">
             <div>
-                <h2>Описание:</h2>
-                <p>{{ $solution->task()->description }}</p>
+                <p>Крайний срок:</p>
+                <h2>{{ $solution->assignment()->deadline() }}</h2>
             </div>
             <div>
-                <h2>Переменные:</h2>
+                <p>Описание:</p>
+                <h2>{{ $solution->task()->description }}</h2>
+            </div>
+            <div>
+                <p>Переменные:</p>
                 <table>
                     @foreach ($solution->task()->variables() as $name => $type)
                         <tr class="variable-row">
                             <td>
-                                <p>{{ $name }}</p>
+                                <h2>{{ $name }}</h2>
                             </td>
                             <td>
-                                <p> - </p>
+                                <h2> - </h2>
                             </td>
                             <td>
-                                <p>{{ $type }}</p>
+                                <h2>{{ $type }}</h2>
                             </td>
                         </tr>
                     @endforeach
@@ -57,7 +67,7 @@
     </div>
     <div class="autotest-container">
         <h2 class="page-title section-title">Автотесты:</h2>
-        <div class="autotest-list">
+        <div class="autotest-list" id="autotest_list">
             @foreach ($solution->task()->autotests()->get() as $test)
                 <div class="autotest" id="autotest-{{ $test->id }}">
                     <h3>{{ $test->name }}</h3>
@@ -69,6 +79,8 @@
 
                     <h5>Ожидаемый вывод:</h5>
                     <p>{{ $test->expected_output }}</p>
+                    <h5>Ваш вывод:</h5>
+                    <p class="output">*</p>
                 </div>
             @endforeach
         </div>

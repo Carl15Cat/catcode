@@ -11,6 +11,7 @@ use App\Http\Requests\AddUserToGroupRequest;
 use App\Models\Group;
 use App\Models\User;
 use App\Models\Task;
+use App\Models\Solution;
 
 class GroupController extends Controller
 {
@@ -89,7 +90,15 @@ class GroupController extends Controller
      * Добавляет пользователя в группу
      */
     public function addUser($groupId, $userId) {
-        Group::find($groupId)->users()->attach($userId);
+        $group = Group::find($groupId);
+        $group->users()->attach($userId);
+
+        foreach ($group->tasks()->get() as $assignment) {
+            Solution::create([
+                "user_id" => $userId,
+                "assignment_id" => $assignment->id,
+            ]);
+        }
 
         return back();
     }
@@ -100,6 +109,10 @@ class GroupController extends Controller
     public function deleteUser($groupId, $userId) {
         $group = Group::find($groupId);
         $group->belongsToMany(User::class)->detach(User::find($userId));
+
+        foreach ($group->tasks()->get() as $assignment) {
+            Solution::where('user_id', $userId)->where('assignment_id', $assignment->id)->delete();
+        }
 
         return back();
     }

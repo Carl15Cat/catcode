@@ -42,7 +42,11 @@ class CompilerController extends Controller
      * Возвращает строку с токеном созданного submission или null в случае ошибки
      */
     public function createSubmission($data) {
-        $response = Http::post($this->judge_url."/submissions", $data); // Запрос к judge0
+        $data['redirect_stderr_to_stdout'] = true;
+        $data['source_code'] = base64_encode($data['source_code']);
+        if(isset($data['stdin'])) { $data['stdin'] = base64_encode($data['stdin']); }
+        if(isset($data['expected_output'])) { $data['expected_output'] = base64_encode($data['expected_output']); }
+        $response = Http::post($this->judge_url."/submissions?base64_encoded=true", $data); // Запрос к judge0
 
         if($response->successful()) {
             return $response->json()['token'];
@@ -55,10 +59,12 @@ class CompilerController extends Controller
      * Возвращает данные о submission из judge0
      */
     public function getSubmission($token) {
-        $response = Http::get($this->judge_url."/submissions/".$token); // Запрос к judge0
+        $response = Http::get($this->judge_url."/submissions/".$token."?base64_encoded=true"); // Запрос к judge0
 
         if($response->successful()) {
-            return $response->json();
+            $data = $response->json();
+            $data['stdout'] = base64_decode($data['stdout']);
+            return $data;
         } else {
             return null;
         }

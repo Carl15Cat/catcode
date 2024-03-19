@@ -2,8 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Log;
 
 use App\Http\Controllers\CompilerController;
+use App\Http\Controllers\SolutionController;
 use App\Http\Controllers\ProgrammingLanguageController;
 
 /*
@@ -24,8 +26,13 @@ use App\Http\Controllers\ProgrammingLanguageController;
 Route::get('/languages', function() { return App\Models\ProgrammingLanguage::getAll(); })->name('getProgrammingLanguages');
 
 Route::controller(CompilerController::class)->prefix('/submissions')->group(function() {
-    Route::get('/{token}', 'getSubmission')->name('getSubmission');
-    Route::post('/', 'runFreeCompiler')->name('createSubmission');
+    Route::post('/', 'runFreeCompiler')->name('createSubmission'); // Запуск свободного компилятора
+    Route::get('/{token}', 'getSubmission')->name('getSubmission'); // Проверка выполнения сабмишна свободного компилятора
 });
 
+Route::controller(SolutionController::class)->middleware(['web'])->group(function() {
+    Route::post('/solution/{solutionId}', 'runAutotests')->name('runAutotests'); // Запуск автотестов решения
+    Route::get('/solution/{solutionId}', 'checkAutotestsStatus')->name('checkAutotests'); // Проверка выполнения автотестов
+});
 
+Route::put('/api/setComplete/{solutionId}/{autotestId}', function() { Log::error("put"); });

@@ -24,6 +24,6 @@ class Group extends Model
      * Возвращает задания, данные группе
      */
     public function tasks(){
-        return $this->belongsToMany(Task::class)->withPivot('deadline');
+        return $this->hasMany(Assignment::class);
     }
 }

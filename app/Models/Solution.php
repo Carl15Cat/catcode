@@ -20,4 +20,8 @@ class Solution extends Model
     public function task() {
         return $this->assignment()->belongsTo(Task::class)->first();
     }
+
+    public function executables() {
+        return $this->hasMany(Executable::class);
+    }
 }

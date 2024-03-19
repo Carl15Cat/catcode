@@ -3,6 +3,7 @@
 :root {
     --main-color: #008000;
     --main-shadow-color: #006000;
+    --warning-color: #e2f110;
     --danger-color: #df2222;
     --danger-shadow-color: #bf1c1c;
     --bg-color: #181818;

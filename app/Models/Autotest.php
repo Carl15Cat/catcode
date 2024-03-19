@@ -16,4 +16,15 @@ class Autotest extends Model
     public function variables() {
         return json_decode($this->variables);
     }
+
+    public function stdin() {
+        $vars = json_decode($this->variables);
+
+        $stdin = "";
+        foreach ($vars as $value) {
+            $stdin .= $value."\n";
+        }
+
+        return $stdin;
+    }
 }
