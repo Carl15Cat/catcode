@@ -88,16 +88,28 @@ class SolutionController extends Controller
         $results = [];
         $compiler = new CompilerController;
 
+        $isDone = true;
+        $isSuccess = true;
+
         // Получение результатов автотестов по токенам
         foreach ($solution->executables()->get() as $executable) {
             $data = $compiler->getSubmission($executable->token);
             $results += [$executable->autotest_id => $data];
+
+            if ($data['status']['id'] < 3) {
+                $isDone = false; // Автотест в очереди или выполняется
+            } else if ($data['status']['id'] > 3) {
+                $isSuccess = false; // Выполнение автотеста завершилось с ошибкой
+            }
         }
+
+        $solution->update(['is_complete' => $isDone && $isSuccess]);
 
         return [
             "success" => "true",
             "message" => "Данные получены",
             "results" => $results,
+            "is_complete" => $isDone && $isSuccess,
         ];
     }
 }

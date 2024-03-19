@@ -1,4 +1,6 @@
 .content-container {
+    margin-top: 8px;
+
     display: grid;
     grid-template-columns: 6fr 1fr 3fr;
 
@@ -7,7 +9,7 @@
 
 .task-info {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
 
     gap: 8px;
 }

@@ -20,6 +20,20 @@
 
 @section('content')
     <h1 class="page-title">{{ $solution->task()->name }}</h1>
+    <div class="task-info">
+        <div>
+            <h3>Статус задания: {{ 
+                !is_null($solution->grade) ? 
+                "Оценено, оценка: ".$solution->grade : (
+                $solution->is_complete ? 
+                "Завершено" :
+                "Не завершено" )
+            }}</h3>
+        </div>
+        <div>
+            <h3>Крайний срок: {{ $solution->assignment()->deadline() }}</h3>
+        </div>
+    </div>
     <div class="content-container">
         <div>
             <div class="input-container">
@@ -36,14 +50,10 @@
             </div>
         </div>
         <div></div>
-        <div class="task-info">
+        <div class="task-desc">
             <div>
-                <p>Крайний срок:</p>
-                <h2>{{ $solution->assignment()->deadline() }}</h2>
-            </div>
-            <div>
-                <p>Описание:</p>
-                <h2>{{ $solution->task()->description }}</h2>
+                <h2 class="page-title">Описание:</h2>
+                <p>{{ $solution->task()->description }}</p>
             </div>
         </div>
     </div>
@@ -55,7 +65,7 @@
                     <h3>{{ $test->name }}</h3>
 
                     <h5>Ввод:</h5>
-                    <p>{{ $test->input }}</p>
+                    <p><pre>{{ $test->input }}</pre></p>
                     <h5>Ожидаемый вывод:</h5>
                     <p>{{ $test->expected_output }}</p>
                     <h5>Ваш вывод:</h5>
