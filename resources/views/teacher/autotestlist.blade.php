@@ -20,10 +20,8 @@
         @foreach ($task->autotests()->get() as $autotest)
             <div class="autotest">
                 <h2>{{ $autotest->name }}</h2>
-                <h3>Переменные:</h3>
-                @foreach (json_decode($autotest->variables) as $name => $value)
-                    <p>{{ $name }} = {{ $value }}</p>
-                @endforeach
+                <h3>Ввод:</h3>
+                <p>{{ $autotest->input }}</p>
                 <h3>Ожидаемый результат:</h3>
                 <p>{{ $autotest->expected_output }}</p>
                 <form method="POST" action="{{ route('deleteAutotest', [$task, $autotest]) }}" class="delete-autotest-form">

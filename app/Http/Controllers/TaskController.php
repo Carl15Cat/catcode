@@ -67,19 +67,9 @@ class TaskController extends Controller
     public function addTask(AddTaskRequest $request) {
         $requests = $request->validated();
 
-        $vars = $this->getVariablesFromRequest($requests);
-
-        if(gettype($vars) !== 'array') {
-            // Если не array, значит там back()->withErrors(), который надо передать дальше
-            return $vars;
-        }
-
-        $vars_json = json_encode($vars);
-
         $data = [
             'name' => $requests['name'],
             'description' => $requests['description'],
-            'variables' => $vars_json,
             'user_id' => Auth::user()->id,
             'programming_language_id' => $requests['language_id'],
         ];
@@ -105,19 +95,9 @@ class TaskController extends Controller
     public function editTask(AddTaskRequest $request, $id) {
         $requests = $request->validated();
 
-        $vars = $this->getVariablesFromRequest($requests);
-
-        if(gettype($vars) !== 'array') {
-            // Если не array, значит там back()->withErrors(), который надо передать дальше
-            return $vars;
-        }
-
-        $vars_json = json_encode($vars);
-
         $data = [
             'name' => $requests['name'],
             'description' => $requests['description'],
-            'variables' => $vars_json,
             'user_id' => Auth::user()->id,
             'programming_language_id' => $requests['language_id'],
         ];
@@ -167,39 +147,5 @@ class TaskController extends Controller
 
         $assignment->delete();
         return redirect()->route('task', $taskId);
-    }
-
-    /**
-     * Принимает отвалидированный запрос
-     * 
-     * Возвращает массив переменных вида ['name' => 'type']
-     * или редирект с ошибкой в случае ошибки
-     * 
-     * Если переменные не установлены, вернёт пустой массив
-     */
-    private function getVariablesFromRequest($requests) {
-        // Проверка, есть ли переменные
-        if(!isset($requests['variable_name'])) {
-            return [];
-        }
-
-        // Проверка на количество имён и типов переменных
-        if(count($requests['variable_name']) != count($requests['variable_type'])) {
-            return back()->withErrors(['variables' => 'Ошибка в переменных']);
-        }
-
-        // Заполнение массива
-        $vars_array = [];
-
-        foreach ($requests['variable_name'] as $key => $value) {
-            $vars_array += [$value => $requests['variable_type'][$key]];
-        }
-
-        // Проверка правильности массива. Он может сломаться, если две переменные будут с одинаковыми именами
-        if(count($vars_array) < count($requests['variable_name'])) {
-            return back()->withErrors(['variables' => 'Названия переменных должны быть уникальными']);
-        }
-
-        return $vars_array;
     }
 }

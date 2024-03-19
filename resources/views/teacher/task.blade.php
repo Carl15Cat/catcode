@@ -65,16 +65,6 @@
                 <p>Описание:</p>
                 <p>{{ $task->description }}</p>
             </div>
-            <div>
-                <p>Переменные:</p>
-                <div>
-                    @foreach ($task->variables() as $name => $type)
-                        <div class="list-item">
-                            <p>{{ $name }} {{ $type }}</p>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
             <div class="btns-container">
                 <h2>{{ $task->autotests()->count() }} автотестов</h2>
                 @if ($task->autotests()->count() > 0)

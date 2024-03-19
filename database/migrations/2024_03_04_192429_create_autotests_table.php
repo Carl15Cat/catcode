@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Task::class);
             $table->string('name')->default('Без названия');
-            $table->json('variables');
+            $table->text('input');
             $table->string('expected_output');
             $table->boolean('is_hidden')->default(false);
             $table->timestamps();

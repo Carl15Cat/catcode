@@ -24,8 +24,6 @@ class AddTaskRequest extends FormRequest
         return [
             'name' => 'required',
             'description' => 'required',
-            'variable_name.*' => 'required',
-            'variable_type.*' => 'required',
             'language_id' => 'required',
         ];
     }

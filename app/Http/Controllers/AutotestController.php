@@ -33,7 +33,6 @@ class AutotestController extends Controller
         $data = $request->validated();
 
         $data['task_id'] = $taskId;
-        $data['variables'] = json_encode(isset($data['variables']) ? $data['variables'] : []);
 
         Autotest::create($data);
         return redirect()->route('autotestlist', $taskId);

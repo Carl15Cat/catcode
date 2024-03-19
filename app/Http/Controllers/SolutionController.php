@@ -62,7 +62,7 @@ class SolutionController extends Controller
             $token = $compiler->createSubmission([
                 'source_code' => trim($requests['source_code']),
                 'language_id' => $solution->task()->programming_language_id,
-                'stdin' => $autotest->stdin(),
+                'stdin' => $autotest->input,
                 'expected_output' => $autotest->expected_output,
                 // 'callback_url' => "172.17.0.1/api/setComplete/".$solutionId."/".$autotest->id, // Не получается достучаться из контейнера
             ]);

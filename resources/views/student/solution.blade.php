@@ -45,24 +45,6 @@
                 <p>Описание:</p>
                 <h2>{{ $solution->task()->description }}</h2>
             </div>
-            <div>
-                <p>Переменные:</p>
-                <table>
-                    @foreach ($solution->task()->variables() as $name => $type)
-                        <tr class="variable-row">
-                            <td>
-                                <h2>{{ $name }}</h2>
-                            </td>
-                            <td>
-                                <h2> - </h2>
-                            </td>
-                            <td>
-                                <h2>{{ $type }}</h2>
-                            </td>
-                        </tr>
-                    @endforeach
-                </table>
-            </div>
         </div>
     </div>
     <div class="autotest-container">
@@ -72,11 +54,8 @@
                 <div class="autotest" id="autotest-{{ $test->id }}">
                     <h3>{{ $test->name }}</h3>
 
-                    <h5>Переменные:</h5>
-                    @foreach ($test->variables() as $name => $value)
-                        <p>{{ $name }} = {{ $value }}</p>
-                    @endforeach
-
+                    <h5>Ввод:</h5>
+                    <p>{{ $test->input }}</p>
                     <h5>Ожидаемый вывод:</h5>
                     <p>{{ $test->expected_output }}</p>
                     <h5>Ваш вывод:</h5>

@@ -23,7 +23,7 @@ class AddAutotestRequest extends FormRequest
     {
         return [
             'name' => 'nullable',
-            'variables.*' => 'required',
+            'input' => 'required',
             'expected_output' => 'required',
             'is_hidden' => 'boolean|nullable',
         ];

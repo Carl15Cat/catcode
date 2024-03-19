@@ -40,16 +40,7 @@
                     </div>
                 </div>
             </div>
-            <div class="variables-container">
-                <h3 class="text-center">Переменные</h3>
-                <button type="button" class="small" id="addVariableButton">Добавить</button>
-
-                <div class="variables-list" id="variables_list">
-
-                </div>
-            </div>
         </div>
-
 
         <button type="submit" class="edit-task-btn">Добавить задание</button>
     </form>

@@ -14,13 +14,6 @@ class Task extends Model
     ];
 
     /**
-     * Возвращает переменные данного задания
-     */
-    public function variables() {
-        return json_decode($this->variables);
-    }
-
-    /**
      * Возвращает автотесты данного задания
      */
     public function autotests() {

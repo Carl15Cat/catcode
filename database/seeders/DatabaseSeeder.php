@@ -12,6 +12,7 @@ use App\Models\Task;
 use App\Models\Variable_type;
 use App\Models\ProgrammingLanguage;
 use App\Models\Status;
+use App\Models\Autotest;
 
 class DatabaseSeeder extends Seeder
 {
@@ -29,14 +30,6 @@ class DatabaseSeeder extends Seeder
         ]);
         Role::insert([
             'name' => 'Студент',
-        ]);
-
-        // Установка доступных типов переменных
-        Variable_type::insert([
-            'name' => 'string'
-        ]);
-        Variable_type::insert([
-            'name' => 'integer'
         ]);
 
         // Установка доступных языков программирования. id должен соответствовать id в judge0
@@ -124,8 +117,20 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'name' => 'Тестовое задание',
             'description' => fake()->sentence(50),
-            'variables' => json_encode(['a' => 'string', 'b' => 'int']),
             'programming_language_id' => 68,
+        ]);
+        Task::insert([
+            'user_id' => 1,
+            'name' => 'Простой вывод',
+            'description' => 'На вход поступает одна строка. Выводом должна быть эта же строка',
+            'programming_language_id' => 68,
+        ]);
+
+        Autotest::insert([
+            'task_id' => 2,
+            'name' => 'String',
+            'input' => 'String',
+            'expected_output' => 'String',
         ]);
     }
 }

@@ -28,13 +28,12 @@
                     <h3>Название</h3>
                     <input type="text" placeholder="Без названия" name="name">
                 </label>
-                <h3>Переменные</h3>
-                @foreach ($task->variables() as $name => $type)
-                    <label>
-                        <p>{{ $name }} ({{ $type }})</p>
-                        <input type="text" name="variables[{{ $name }}]">
-                    </label>
-                @endforeach
+
+                <label>
+                    <h3>Ввод</h3>
+                    <textarea name="input" id="" cols="30" rows="10"></textarea>    
+                </label>
+
                 <label>
                     <h3>Ожидаемый результат</h3>
                     <input type="text" name="expected_output">
