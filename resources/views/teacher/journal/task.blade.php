@@ -6,7 +6,10 @@
 
 @section('content')
     <h1 class="page-title">{{ $assignment->task()->name }} - {{ $assignment->group()->name }}</h1>
-    <h2 class="page-title">Крайний срок: <p class="{{ $assignment->isExpired() ? 'error' : '' }}">{{ $assignment->deadline() }}</h2>
+    <div class="space-between">
+        <form action="{{ route('journalGroup', $assignment->group()->id) }}" method="get"><button>К группе</button></form>
+        <h2>Крайний срок: <p class="{{ $assignment->isExpired() ? 'error' : '' }}">{{ $assignment->deadline() }}</h2>
+    </div>
     <div class="table-container">
         <table class="journal-table">
             <tbody>

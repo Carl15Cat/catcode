@@ -15,9 +15,15 @@
                         <th><a href="{{ route('journalTask', $assignment->id) }}">{{ $assignment->task()->name }}</a></th>
                     @endforeach
                 </tr>
+                <tr>
+                    <th></th>
+                    @foreach ($group->tasks()->get() as $assignment)
+                        <th>{{ $assignment->deadline("date") }}</th>
+                    @endforeach
+                </tr>
                 @foreach ($group->users()->get() as $student)
                     <tr>
-                        <td>{{ $student->lastname}} {{ $student->firstname }}</td>
+                        <td class="inline"><p>{{ $student->lastname}} {{ $student->firstname }}</p></td>
                         @foreach ($group->tasks()->get() as $assignment)
                             @php
                                 $solution = $assignment->getSolution($student->id);

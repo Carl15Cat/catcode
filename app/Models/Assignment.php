@@ -25,8 +25,25 @@ class Assignment extends Model
         return $this->task()->programmingLanguage();
     }
 
-    public function deadline() {
-        return date_create_from_format('Y-m-d H:i:s', $this->deadline)->format('H:i d.m.Y');
+    /**
+     * Возвращает срок сдачи задания в читаемой ворме
+     * 
+     * Аргумент $type:
+     * "date" - только дата
+     * "time" - только время
+     * "all" - дата и время
+     */
+    public function deadline($type = "all") {
+        $deadline = date_create_from_format('Y-m-d H:i:s', $this->deadline);
+
+        switch ($type) {
+            case 'date':
+                return $deadline->format('d.m.Y');
+            case 'time':
+                return $deadline->format('H:i');
+            default:
+                return $deadline->format('H:i d.m.Y');
+        }
     }
 
     public function solutions() {
