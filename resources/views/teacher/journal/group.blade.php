@@ -31,12 +31,12 @@
                             @endphp
 
                             @if (!$solution->is_complete)
-                                <td><a href="#" class="not-complete">*</a></td>
+                                <td><a href="{{ route('solutionTeacher', $solution->id) }}" class="not-complete">*</a></td>
                             @else
                                 @if (is_null($solution->grade))
-                                    <td><a href="#" class="waiting-for-grade">Ожидает</a></td>
+                                    <td><a href="{{ route('solutionTeacher', $solution->id) }}" class="waiting-for-grade">Ожидает</a></td>
                                 @else
-                                    <td><a href="#" class="grade-{{ $solution->grade }}">{{ $solution->grade }}</a></td>
+                                    <td><a href="{{ route('solutionTeacher', $solution->id) }}" class="grade-{{ $solution->grade }}">{{ $solution->grade }}</a></td>
                                 @endif
                             @endif
                         @endforeach

@@ -35,6 +35,12 @@ class SolutionController extends Controller
         return view('student.solution', compact('solution'));
     }
 
+    public function solutionTeacherView($solutionId) {
+        $solution = Solution::find($solutionId);
+
+        return view('teacher.solution', compact('solution'));
+    }
+
     public function runAutotests(RunAutotestsRequest $request, $solutionId) {
         $solution = Solution::find($solutionId);
         if($solution->user_id != Auth::user()->id) {
@@ -80,9 +86,12 @@ class SolutionController extends Controller
 
     public function checkAutotestsStatus($solutionId) {
         $solution = Solution::find($solutionId);
-        if($solution->user_id != Auth::user()->id) {
+        if($solution->user_id != Auth::user()->id
+        && Auth::user()->role_id != 1
+        && Auth::user()->role_id != 2) {
             http_response_code(403);
-            return ["success" => "false", "message" => "Данное решение не для этого пользователя"];
+            $role = Auth::user()->role_id;
+            return ["success" => "false", "message" => "Нет доступа к этому решению"];
         }
 
         $results = [];
@@ -103,7 +112,7 @@ class SolutionController extends Controller
             }
         }
 
-        $solution->update(['is_complete' => $isDone && $isSuccess]);
+        $solution->update(['is_complete' => $isDone && $isSuccess && $solution->executables()->count() > 1 ]);
 
         return [
             "success" => "true",

@@ -49,7 +49,6 @@
                 </div>
             </div>
         </div>
-        <div></div>
         <div class="task-desc">
             <div>
                 <h2 class="page-title">Описание:</h2>

@@ -28,7 +28,7 @@
                         <td>{{ $student->lastname }} {{ $student->firstname }}</td>
                         <td><p class="{{ $solution->is_complete ? 'success' : 'error' }}">{{ $solution->is_complete ? 'Завершено' : 'Не завершено' }}</p></td>
                         <td><p class="grade-{{ $solution->grade }}">{{ is_null($solution->grade) ? "*" : $solution->grade }}</p></td>
-                        <td><form action="#"><button class="small">Перейти</button></form></td>
+                        <td><form action="{{ route('solutionTeacher', $solution->id) }}"><button class="small">Перейти</button></form></td>
                     </tr>
                 @endforeach
             </tbody>

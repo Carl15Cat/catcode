@@ -9,7 +9,7 @@
 
 .task-info {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
 
     gap: 8px;
 }
@@ -24,7 +24,7 @@
 
 .autotest-list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 
     gap: 8px;
 }
@@ -53,4 +53,28 @@
 .autotest.error {
     border: 3px solid var(--danger-color);
     color: white;
+}
+
+.buttons-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 8px;
+}
+
+.buttons-container > form {
+    display: flex;
+    width: 100%;
+}
+
+.buttons-container > form > button {
+    width: 100%;
+}
+
+.grade-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
 }

@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <h1 class="page-title">Мой профиль</h1>
+    <h1 class="page-title">{{ Auth::user() == $user ? 'Мой профиль' : 'Профиль пользователя' }}</h1>
     <div class="space-between">
         <table class="user-table">
             <tbody>
@@ -23,6 +23,12 @@
                     <td>Отчество:</td>
                     <td>{{ $user->patronymic ?? '' }}</td>
                 </tr>
+                @if (Auth::user() != $user)
+                    <tr>
+                        <td>Логин:</td>
+                        <td>{{ $user->login }}</td>
+                    </tr>
+                @endif
                 <tr>
                     <td>Роль:</td>
                     <td>{{ $user->role()->name }}</td>

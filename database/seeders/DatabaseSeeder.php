@@ -117,13 +117,13 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'name' => 'Тестовое задание',
             'description' => fake()->sentence(50),
-            'programming_language_id' => 68,
+            'programming_language_id' => 76,
         ]);
         Task::insert([
             'user_id' => 1,
             'name' => 'Простой вывод',
             'description' => 'На вход поступает одна строка. Выводом должна быть эта же строка',
-            'programming_language_id' => 68,
+            'programming_language_id' => 76,
         ]);
 
         Autotest::insert([

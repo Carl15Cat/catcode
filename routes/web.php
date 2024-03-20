@@ -72,6 +72,11 @@ Route::middleware('auth')->group(function() {
             Route::post('/{id}/delete', 'deleteAutotest')->name('deleteAutotest');
         });
 
+        // Управление решениями студентов
+        Route::controller(SolutionController::class)->prefix('/solutions')->group(function() {
+            Route::get('/{solutionId}','solutionTeacherView')->name('solutionTeacher');
+        });
+
         // Управление группами
         Route::controller(GroupController::class)->prefix('/groups')->group(function() {
             Route::get('/', 'grouplistView')->name('grouplist');
