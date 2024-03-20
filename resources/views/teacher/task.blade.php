@@ -39,7 +39,7 @@
                                     <td class="deadline">{{ date_create_from_format('Y-m-d H:i:s', $assignment->deadline)->format('H:i d.m.Y') }}</td>
                                     <td>
                                         <div class="group-btns">
-                                            <form action="#">
+                                            <form action="{{ route('journalTask', $assignment->id) }}">
                                                 <button class="small">Журнал</button>
                                             </form>
     

@@ -12,6 +12,7 @@ use App\Models\Group;
 use App\Models\User;
 use App\Models\Task;
 use App\Models\Solution;
+use App\Models\Assignment;
 
 class GroupController extends Controller
 {
@@ -127,5 +128,15 @@ class GroupController extends Controller
         $list = Group::whereNotIn('id', $groups)
         ->where('name', 'LIKE', $searchQuery)->paginate(15)->withQueryString();
         return view('teacher.searchGroupToGiveTask', compact('taskId', 'list', 'searchQuery'));
+    }
+
+    public function journalView($groupId) {
+        $group = Group::find($groupId);
+        return view('teacher.journal.group', compact('group'));
+    }
+
+    public function journalTaskView($assignmentId) {
+        $assignment = Assignment::find($assignmentId);
+        return view('teacher.journal.task', compact('assignment'));
     }
 }

@@ -17,13 +17,13 @@ class Group extends Model
      * Возвращает список пользователей, 
      */
     public function users() {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)->orderBy('lastname')->orderBy('firstname');
     }
 
     /**
      * Возвращает задания, данные группе
      */
     public function tasks(){
-        return $this->hasMany(Assignment::class);
+        return $this->hasMany(Assignment::class)->orderBy('deadline');
     }
 }

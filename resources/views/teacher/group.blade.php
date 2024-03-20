@@ -21,7 +21,7 @@
                     <form action="{{ route('addUsersToGroup', $group->id) }}">
                         <button>Добавить</button>
                     </form>
-                    <form action="">
+                    <form action="{{ route('journalGroup', $group->id) }}">
                         <button>В журнал</button>
                     </form>
                 </div>

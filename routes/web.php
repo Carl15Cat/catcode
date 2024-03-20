@@ -79,6 +79,8 @@ Route::middleware('auth')->group(function() {
             Route::get('/{id}', 'groupView')->name('group');
             Route::get('/{id}/addUsers', 'addUsersView')->name('addUsersToGroup');
             Route::get('/give/{taskId}', 'searchToGiveView')->name('searchGroupToGiveTask');
+            Route::get('/journal/{groupId}', 'journalView')->name('journalGroup');
+            Route::get('/journal/task/{assignmentId}', 'journalTaskView')->name('journalTask');
 
             Route::post('/add', 'addGroup');
             Route::post('/{id}/edit', 'editGroup')->name('editGroup');

@@ -1,0 +1,44 @@
+.table-container {
+    overflow-x: auto;
+}
+
+.journal-table {
+    border: 1px solid grey;
+    border-collapse: collapse;
+
+    text-align: center;
+    width: 100%;
+}
+
+.journal-table td, .journal-table th {
+    padding: 4px;
+    border: 1px solid grey;
+}
+
+.journal-table th a {
+    color: white;
+}
+
+.not-complete {
+    color: var(--danger-color);
+}
+
+.waiting-for-grade {
+    color: white;
+}
+
+.grade-2 {
+    color: var(--danger-color);
+}
+
+.grade-3 {
+    color: var(--warning-color);
+}
+
+.grade-4 {
+    color: var(--main-color);
+}
+
+.grade-5 {
+    color: var(--main-shadow-color);
+}

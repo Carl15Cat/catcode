@@ -19,7 +19,7 @@
                 @if (Auth::user()->role_id == 2 || Auth::user()->role_id == 1)
                     <a class="nav-link" href="{{ route('tasklist') }}">Задания</a>
                     <a class="nav-link" href="{{ route('grouplist') }}">Группы</a>
-                    <a class="nav-link" href="#">Журнал</a>
+                    {{-- <a class="nav-link" href="#">Журнал</a> --}}
                 @endif
 
                 {{-- Админ --}}

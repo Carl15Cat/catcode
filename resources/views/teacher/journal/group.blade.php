@@ -1,0 +1,42 @@
+@extends('app')
+
+@section('css')
+    <link rel="stylesheet" href="{{ asset('resources/css/journal.css') }}">
+@endsection
+
+@section('content')
+    <h1 class="page-title">{{ $group->name }}</h1>
+    <div class="table-container">
+        <table class="journal-table">
+            <tbody>
+                <tr>
+                    <th></th>
+                    @foreach ($group->tasks()->get() as $assignment)
+                        <th><a href="{{ route('journalTask', $assignment->id) }}">{{ $assignment->task()->name }}</a></th>
+                    @endforeach
+                </tr>
+                @foreach ($group->users()->get() as $student)
+                    <tr>
+                        <td>{{ $student->lastname}} {{ $student->firstname }}</td>
+                        @foreach ($group->tasks()->get() as $assignment)
+                            @php
+                                $solution = $assignment->getSolution($student->id);
+                                if(is_null($solution)) continue;
+                            @endphp
+
+                            @if (!$solution->is_complete)
+                                <td><a href="#" class="not-complete">*</a></td>
+                            @else
+                                @if (is_null($solution->grade))
+                                    <td><a href="#" class="waiting-for-grade">Ожидает</a></td>
+                                @else
+                                    <td><a href="#" class="grade-{{ $solution->grade }}">{{ $solution->grade }}</a></td>
+                                @endif
+                            @endif
+                        @endforeach
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+@endsection

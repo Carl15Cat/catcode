@@ -265,3 +265,11 @@ button.small, .button.small, select.small {
 
     gap: 8px;
 }
+
+.error {
+    color: var(--danger-color);
+}
+
+.success {
+    color: var(--main-color);
+}
