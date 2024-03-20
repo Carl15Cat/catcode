@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\RunAutotestsRequest;
+use App\Http\Requests\SetGradeRequest;
 
 use App\Models\Assignment;
 use App\Models\Solution;
@@ -120,5 +121,11 @@ class SolutionController extends Controller
             "results" => $results,
             "is_complete" => $isDone && $isSuccess,
         ];
+    }
+
+    public function setGrade(SetGradeRequest $request, $solutionId) {
+        Solution::find($solutionId)->update(['grade' => $request->validated()['grade']]);
+
+        return back();
     }
 }

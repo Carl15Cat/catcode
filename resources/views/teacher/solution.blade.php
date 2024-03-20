@@ -71,7 +71,8 @@
                 @endif
             </div>
             <div>
-                <form action="#" method="post" class="grade-form">
+                <form action="{{ route('grade', $solution->id) }}" method="post" class="grade-form">
+                    @csrf
                     <h2>Оценка:</h2>
                     <select name="grade">
                         @for ($i = 2; $i <= 5; $i++)

@@ -75,6 +75,8 @@ Route::middleware('auth')->group(function() {
         // Управление решениями студентов
         Route::controller(SolutionController::class)->prefix('/solutions')->group(function() {
             Route::get('/{solutionId}','solutionTeacherView')->name('solutionTeacher');
+
+            Route::post('/{solutionId}/grade','setGrade')->name('grade');
         });
 
         // Управление группами

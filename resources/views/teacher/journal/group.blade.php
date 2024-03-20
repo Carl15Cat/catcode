@@ -30,15 +30,18 @@
                                 if(is_null($solution)) continue;
                             @endphp
 
-                            @if (!$solution->is_complete)
-                                <td><a href="{{ route('solutionTeacher', $solution->id) }}" class="not-complete">*</a></td>
-                            @else
+                            <td>
                                 @if (is_null($solution->grade))
-                                    <td><a href="{{ route('solutionTeacher', $solution->id) }}" class="waiting-for-grade">Ожидает</a></td>
+                                    @if ($solution->is_complete)
+                                    <a href="{{ route('solutionTeacher', $solution->id) }}" class="waiting-for-grade">Ожидает</a>
+                                    @else
+                                        <a href="{{ route('solutionTeacher', $solution->id) }}" class="not-complete">*</a>
+                                    @endif
                                 @else
-                                    <td><a href="{{ route('solutionTeacher', $solution->id) }}" class="grade-{{ $solution->grade }}">{{ $solution->grade }}</a></td>
+                                    <a href="{{ route('solutionTeacher', $solution->id) }}" class="grade-{{ $solution->grade }}">{{ $solution->grade }}</a>
                                 @endif
-                            @endif
+                            </td>
+
                         @endforeach
                     </tr>
                 @endforeach
