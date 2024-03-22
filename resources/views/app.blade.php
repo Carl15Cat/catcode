@@ -17,9 +17,7 @@
 <body>
     @include('components/header')
 
-    @if ($errors->any())
-        {{ $errors->all()[0] }}
-    @endif
+    @include('components/error')
 
     <div class="container">
         <div class="max-width">
@@ -29,6 +27,7 @@
 
     @include('components/footer')
 
+    <script src="{{ asset('resources/js/app.js') }}"></script>
     @yield('js')
 </body>
 </html>

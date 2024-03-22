@@ -38,8 +38,7 @@ let getResultsRequest = async () => {
         credentials: "include",
     }).then((response) => {
         if(response.status != 200) {
-            console.log(Error);
-            // Обработка ошибки позже 
+            showError("Ошибка получения результатов")
         }
 
         return response.json()

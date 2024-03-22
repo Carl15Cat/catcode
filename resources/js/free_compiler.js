@@ -61,7 +61,7 @@ let submissionFetch = (token) => {
 // Возвращает true при коде ошибки >=300
 let hanleError = (status) => {
     if(status >= 300) {
-        console.log("Error"); // Обработать позже
+        showError("Ошибка компилятора")
         execute_button.innerText = "Запустить"
         return true;
     }
