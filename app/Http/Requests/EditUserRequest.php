@@ -22,13 +22,31 @@ class EditUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'firstname' => 'nullable',
-            'lastname' => 'nullable',
-            'patronymic' => 'nullable',
-            'login' => 'nullable',
-            'password' => 'nullable',
-            'password-repeat' => 'nullable|same:password',
-            'role_id' => 'nullable',
+            'firstname' => 'required|regex:/^[А-ЯЁ][а-яё]+$/u',
+            'lastname' => 'required|regex:/^[А-ЯЁ][а-яё]+$/u',
+            'patronymic' => 'nullable|regex:/^[А-ЯЁ][а-яё]+$/u',
+            'login' => 'required',
+            'password' => 'required|min:6',
+            'password-repeat' => 'required|same:password',
+            'role_id' => 'required',
+        ];
+    }
+
+    public function messages() {
+        return [
+            'firstname.required' => 'Поле "Имя" обязательно',
+            'lastname.required' => 'Поле "Фамилия" обязательно',
+            'password.required' => 'Поле "Пароль" обязательно',
+            'password-repeat.required' => 'Поле "Повтор пароля" обязательно',
+
+            'firstname.regex' => 'Имя должно содержать только кириллицу и начинаться с заглавной буквы',
+            'lastname.regex' => 'Фамилия должна содержать только кириллицу и начинаться с заглавной буквы',
+            'patronymic.regex' => 'Отчество должно содержать только кириллицу и начинаться с заглавной буквы',
+
+            'password.min' => 'Пароль должен содержать минимум 6 символов',
+            'same' => 'Пароли не совпадают',  
+            
+            'role_id' => 'Укажите роль пользователя',
         ];
     }
 }

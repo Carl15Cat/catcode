@@ -28,4 +28,10 @@ class AddAutotestRequest extends FormRequest
             'is_hidden' => 'boolean|nullable',
         ];
     }
+
+    public function messages() {
+        return [
+            'required' => 'Требуется указать вводные данные и ожидаемый результат',
+        ];
+    }
 }

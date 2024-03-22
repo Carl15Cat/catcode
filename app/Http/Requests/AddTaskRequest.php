@@ -27,4 +27,12 @@ class AddTaskRequest extends FormRequest
             'language_id' => 'required',
         ];
     }
+
+    public function messages() {
+        return [
+            'name.required' => 'Укажите название задания',
+            'description.required' => 'Требуется описать задание',
+            'language_id.required' => 'Выберите язык программирования',
+        ];
+    }
 }

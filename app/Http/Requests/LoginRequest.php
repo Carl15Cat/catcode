@@ -26,4 +26,10 @@ class LoginRequest extends FormRequest
             'password' => 'required',
         ];
     }
+
+    public function messages() {
+        return [
+            'required' => 'Все поля обязательны'
+        ];
+    }
 }

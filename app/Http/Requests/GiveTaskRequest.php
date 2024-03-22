@@ -26,4 +26,12 @@ class GiveTaskRequest extends FormRequest
             'deadline_time' => 'string|required',
         ];
     }
+
+    public function messages() {
+        return [
+            'required' => 'Укажите дату и время срока сдачи',
+            'date' => 'Укажите дату и время срока сдачи',
+            'time' => 'Укажите дату и время срока сдачи',
+        ];
+    }
 }

@@ -25,4 +25,8 @@ class EditGroupRequest extends FormRequest
             'name' => 'required',
         ];
     }
+
+    public function messages() {
+        'required' => 'Укажите название группы',
+    }
 }
