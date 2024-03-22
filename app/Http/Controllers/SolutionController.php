@@ -15,6 +15,9 @@ use App\Models\Executable;
 
 class SolutionController extends Controller
 {
+    /**
+     * Создаёт решение для одного пользователя
+     */
     public function createSolution($assignmentId, $userId) {
         $assignment = Assignment::find($assignmentId);
         $language = $assignment->task()->programmingLanguage();
@@ -30,18 +33,32 @@ class SolutionController extends Controller
         return true;
     }
 
+    /**
+     * Возвращает страницу решения от лица студента
+     */
     public function solutionStudentView($solutionId) {
         $solution = Solution::find($solutionId);
         
         return view('student.solution', compact('solution'));
     }
 
+    /**
+     * Возвращает страницу решения от лица преподавателя
+     */
     public function solutionTeacherView($solutionId) {
         $solution = Solution::find($solutionId);
 
         return view('teacher.solution', compact('solution'));
     }
 
+    /**
+     * Запуск автотестов. 
+     * 
+     * Вводные данные берутся из БД по id решения, выполняемый код - из запроса. 
+     * Сохраняет в таблицу Executables токены запущенных автотестов
+     * В случае повторного запуска автотестов того же решения, старые записи
+     * из таблицы Executables удаляются
+     */
     public function runAutotests(RunAutotestsRequest $request, $solutionId) {
         $solution = Solution::find($solutionId);
         if($solution->user_id != Auth::user()->id) {
@@ -85,6 +102,13 @@ class SolutionController extends Controller
         return ["success" => "true", "message" => "Создано"];
     }
 
+    /**
+     * Проверка статуса автотестов
+     * 
+     * Берёт токены запущенных автотестов из таблицы Executables по id решения
+     * Проверяет status.id, который приходит из judge0
+     * Если все автотесты выполнены успешно (status.id = 3), устанавливает is_passed = true для данного решения
+     */
     public function checkAutotestsStatus($solutionId) {
         $solution = Solution::find($solutionId);
         if($solution->user_id != Auth::user()->id
@@ -113,16 +137,19 @@ class SolutionController extends Controller
             }
         }
 
-        $solution->update(['is_complete' => $isDone && $isSuccess && $solution->executables()->count() > 1 ]);
+        $solution->update(['is_passed' => $isDone && $isSuccess && $solution->executables()->count() > 0 ]);
 
         return [
             "success" => "true",
             "message" => "Данные получены",
             "results" => $results,
-            "is_complete" => $isDone && $isSuccess,
+            "is_passed" => $isDone && $isSuccess,
         ];
     }
 
+    /**
+     * Оценка решения
+     */
     public function setGrade(SetGradeRequest $request, $solutionId) {
         Solution::find($solutionId)->update(['grade' => $request->validated()['grade']]);
 

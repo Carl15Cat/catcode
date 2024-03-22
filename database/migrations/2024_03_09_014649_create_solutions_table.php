@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Assignment::class)->constrained()->onDelete('cascade');
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
-            $table->boolean('is_complete')->default(false);
+            $table->boolean('is_passed')->default(false);
             $table->integer('grade')->nullable();
             $table->text('code')->nullable();
             $table->timestamps();

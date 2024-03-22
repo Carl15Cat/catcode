@@ -32,7 +32,7 @@
 
                             <td>
                                 @if (is_null($solution->grade))
-                                    @if ($solution->is_complete)
+                                    @if ($solution->is_passed)
                                     <a href="{{ route('solutionTeacher', $solution->id) }}" class="waiting-for-grade">Ожидает</a>
                                     @else
                                         <a href="{{ route('solutionTeacher', $solution->id) }}" class="not-complete">*</a>

@@ -25,7 +25,7 @@
             <h3>Статус задания: {{ 
                 !is_null($solution->grade) ? 
                 "Оценено, оценка: ".$solution->grade : (
-                $solution->is_complete ? 
+                $solution->is_passed ? 
                 "Завершено" :
                 "Не завершено" )
             }}</h3>

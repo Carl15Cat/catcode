@@ -19,7 +19,6 @@ return new class extends Migration
             $table->foreignIdFor(Solution::class)->constrained()->onDelete('cascade');
             $table->foreignIdFor(Autotest::class)->constained()->onDelete('cascade');
             $table->string('token')->default("");
-            $table->text('stdout')->default("");
             $table->timestamps();
         });
     }
