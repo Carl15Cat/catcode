@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(Task::class);
             $table->string('name')->default('Без названия');
             $table->text('input');
-            $table->string('expected_output');
+            $table->text('expected_output');
             $table->boolean('is_hidden')->default(false);
             $table->timestamps();
         });
