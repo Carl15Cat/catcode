@@ -1,11 +1,14 @@
 let showError = (text) => {
-    let error_box = `
+    let htmlString = `
     <div class="message-box error-box" id="error-box">
-        <p>{{ ${text} }}</p>
+        <p>${text}</p>
     </div>
     `
 
-    document.querySelector('body').appendChild(error_box)
+    let div = document.createElement('div')
+    div.innerHTML = htmlString.trim()
+
+    document.querySelector('body').appendChild(div.firstChild)
 
     addQS();
 }
