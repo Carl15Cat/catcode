@@ -130,11 +130,17 @@ class GroupController extends Controller
         return view('teacher.searchGroupToGiveTask', compact('taskId', 'list', 'searchQuery'));
     }
 
+    /**
+     * Возвращает страницу журнала группы
+     */
     public function journalView($groupId) {
         $group = Group::find($groupId);
         return view('teacher.journal.group', compact('group'));
     }
 
+    /**
+     * Возвращает страницу журнала по заданию с более подробной информацией
+     */
     public function journalTaskView($assignmentId) {
         $assignment = Assignment::find($assignmentId);
         return view('teacher.journal.task', compact('assignment'));

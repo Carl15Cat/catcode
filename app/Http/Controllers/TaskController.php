@@ -134,6 +134,12 @@ class TaskController extends Controller
         $requests = $request->validated();
 
         $deadline = $requests['deadline_date'].' '.$requests['deadline_time'];
+        
+        // Если срок сдачи уже наступил
+        if($deadline < date('Y-m-d H:i:s')) {
+            return back()->withErrors(['deadline' => 'Срок сдачи не должен быть уже наступившим']);
+        }
+
         AssignmentController::createAssignment($taskId, $groupId, $deadline);
         
         return redirect()->route('task', $taskId);

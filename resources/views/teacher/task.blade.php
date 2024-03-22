@@ -43,7 +43,7 @@
                                                 <button class="small">Журнал</button>
                                             </form>
     
-                                            <form action="#">
+                                            <form action="{{ route('editAssignment', $assignment->id) }}">
                                                 <button class="small">Изменить</button>
                                             </form>
     

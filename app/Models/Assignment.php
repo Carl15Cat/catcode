@@ -29,9 +29,10 @@ class Assignment extends Model
      * Возвращает срок сдачи задания в читаемой ворме
      * 
      * Аргумент $type:
-     * "date" - только дата
-     * "time" - только время
-     * "all" - дата и время
+     * "date" - только дата (dd.MM.yyyy)
+     * "date-reversed" - дата в формате инпутов (yyyy-MM-dd)
+     * "time" - только время (hh:mm)
+     * "all" - дата и время (hh:mm dd.MM.yyyy)
      */
     public function deadline($type = "all") {
         $deadline = date_create_from_format('Y-m-d H:i:s', $this->deadline);
@@ -39,6 +40,8 @@ class Assignment extends Model
         switch ($type) {
             case 'date':
                 return $deadline->format('d.m.Y');
+            case 'date-reversed':
+                return $deadline->format('Y-m-d');
             case 'time':
                 return $deadline->format('H:i');
             default:

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AutotestController;
+use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\CompilerController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\SolutionController;
@@ -55,12 +56,14 @@ Route::middleware('auth')->group(function() {
             Route::get('/{id}', 'taskView')->name('task');
             Route::get('/{id}/edit', 'editTaskView')->name('editTask');
             Route::get('/{taskId}/give/{groupId}', 'giveTaskView')->name('giveTask');
+            Route::get('/edit/{assignmentId}', [AssignmentController::class, 'editAssignmentView'])->name('editAssignment');
 
             Route::post('/add', 'addTask');
             Route::post('/{id}/edit', 'editTask');
             Route::post('/{id}/delete', 'deleteTask')->name('deleteTask');
             Route::post('/{taskId}/give/{groupId}', 'giveTask');
             Route::post('/{taskId}/cancel/{groupId}', 'cancelTask')->name('cancelTask');
+            Route::post('/edit/{assignmentId}', [AssignmentController::class, 'editAssignment']);
         });
 
         // Управление автотестами

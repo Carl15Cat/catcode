@@ -22,7 +22,7 @@ class GiveTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'deadline_date' => 'date|required',
+            'deadline_date' => 'date|required|after_or_equal:today',
             'deadline_time' => 'string|required',
         ];
     }
@@ -32,6 +32,7 @@ class GiveTaskRequest extends FormRequest
             'required' => 'Укажите дату и время срока сдачи',
             'date' => 'Укажите дату и время срока сдачи',
             'time' => 'Укажите дату и время срока сдачи',
+            'after_or_equal' => 'Срок сдачи не должен быть уже наступившим',
         ];
     }
 }
