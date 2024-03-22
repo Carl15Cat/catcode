@@ -52,7 +52,7 @@
     flex: 0 1 100%;
 }
 
-#code, #highlighting{
+#code, #highlighting, #input{
     position: absolute;
 
     top: 0;
@@ -69,9 +69,11 @@
 
     overflow: auto;    
     white-space: pre-wrap;
+
+    outline: none;
 }
 
-#code, #highlighting, #highlighting * {
+#code, #highlighting, #highlighting *, #input {
     font-size: 1.5rem;
     line-height: 1.8rem;
     font-family: 'Manrope', sans-serif;
@@ -83,8 +85,11 @@
     background: transparent;
     color: transparent;
     caret-color: white;
+}
 
-    outline: none;
+#input {
+    background-color: #2d2d2d;
+    border-radius: 0;
 }
 
 #highlighting{
@@ -121,4 +126,17 @@
 .language-name {
     font-size: 16px;
     background-color: var(--main-color);
+}
+
+.inputs-container {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+
+    gap: 8px;
+
+    flex-grow: 1;
+}
+
+.window-name {
+    margin: 6px 0;
 }

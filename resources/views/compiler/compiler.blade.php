@@ -15,16 +15,26 @@
 
 @section('content')
     <div class="compiler-container">
-        <div class="input-container">
-            <div class="window-title">
-                <select class="language-name" name="language_id" id="language_select">
-
-                </select>
-                <p class="execute" id="executeButton">Запустить</p>
+        <div class="inputs-container">
+            <div class="input-container">
+                <div class="window-title">
+                    <select class="language-name" name="language_id" id="language_select">
+    
+                    </select>
+                    <p class="execute" id="executeButton">Запустить</p>
+                </div>
+                <div class="code-container">
+                    <textarea name="" id="code" spellcheck="false"></textarea>
+                    <pre id="highlighting"><code id="highlighting-content"></code></pre>
+                </div>
             </div>
-            <div class="code-container">
-                <textarea name="" id="code" spellcheck="false"></textarea>
-                <pre id="highlighting"><code id="highlighting-content"></code></pre>
+            <div class="input-container">
+                <div class="window-title">
+                    <p class="window-name">Ввод</p>
+                </div>
+                <div class="code-container">
+                    <textarea name="" id="input" cols="30" rows="10"></textarea>
+                </div>
             </div>
         </div>
 

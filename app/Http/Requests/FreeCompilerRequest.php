@@ -26,6 +26,7 @@ class FreeCompilerRequest extends FormRequest
         return [
             'language_id' => 'required|integer',
             'source_code' => 'required|string',
+            'stdin' => 'required|string',
         ];
     }
 
