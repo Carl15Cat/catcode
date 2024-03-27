@@ -37,5 +37,8 @@
         </label>
 
         <button type="submit" class="register-btn">Регистрация</button>
+
+        <a class="login-link" href="{{ route('login') }}">Логин</a>
+
     </form>
 @endsection

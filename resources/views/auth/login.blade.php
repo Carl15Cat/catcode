@@ -21,5 +21,8 @@
         </label>
         
         <button type="submit" class="login-btn">Вход</button>
+        
+        <a class="register-link" href="{{ route('register') }}">Регистрация</a>
+
     </form>
 @endsection
