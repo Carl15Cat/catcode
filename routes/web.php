@@ -11,15 +11,11 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VariableTypeController;
 
-// Главная
-Route::get('/', function () { return view('welcome'); })->name('/');
-
 // Компилятор
 Route::get('/compiler', [CompilerController::class, 'freeCompilerView'])->name('compiler');
 
 // Аутентификация
 Route::controller(UserController::class)->group(function() {
-
     Route::get('/login', 'loginView')->name('login');
     Route::get('/register', 'registerView')->name('register');
 
@@ -30,6 +26,13 @@ Route::controller(UserController::class)->group(function() {
 
 // Только для зарегистрированных пользователей
 Route::middleware('auth')->group(function() {
+    // Главная страница
+    Route::get('/', function () { 
+        if(Auth::user()->role_id == 3)
+            return redirect()->route('studentTasks');
+        else
+            return redirect()->route('tasklist');
+    })->name('/');
 
     // Управление своими данными
     Route::controller(UserController::class)->prefix('/me')->group(function() {
