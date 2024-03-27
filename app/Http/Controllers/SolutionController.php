@@ -128,6 +128,7 @@ class SolutionController extends Controller
         // Получение результатов автотестов по токенам
         foreach ($solution->executables()->get() as $executable) {
             $data = $compiler->getSubmission($executable->token);
+            $data['stdout'] = mb_convert_encoding($data['stdout'], 'UTF-8', 'UTF-8');
             $results += [$executable->autotest_id => $data];
 
             if ($data['status']['id'] < 3) {
